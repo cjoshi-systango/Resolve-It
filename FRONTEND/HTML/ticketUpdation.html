@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       header{
+
+        background-color:#7b97ea;
+  color: white;
+
+       }
+#issueData{
+
+    margin-left:2%;
+    /* max-width:10%; */
+    margin-top:3%;
+    line-height: 35px;
+
+}
+
+.container{
+
+    max-width:70vw;
+    margin:auto;
+    margin-top:5%;
+    background-color:#e8f0f3;
+    
+  
+   
+}
+#outerdiv
+{
+    margin-left:15%;
+
+}
+.demo{
+    height: 20px;
+    flex: 0 0 200px;
+    margin-left: 10px;
+}
+    </style>
+    <link rel="stylesheet" href="../CSS/ticketUpdation.css">
+</head>
+<body>
+    <div class="log-form" >
+        <header><h2>Ticket Update</h2></header>
+        <div class="container">
+            <span class="anchor" id="formChangePassword"></span>
+            <hr class="mb-5">
+        <div id="issueData">
+            <label>Subject :</label><span id="subject" class="demo"></span><br>
+            <label>Priority :</label><span id="priority" class="demo"></span><br>
+            <label>Assigned To :</label><span id="assignedTo" class="demo"></span><br>
+            <label>Created date :</label><span id="createdDate" class="demo"></span><br>
+            <label>Description :</label> <span id="description" class="demo"></span><br>
+            <label>Created By :</label><span id="createdBy" class="demo"></span><br>
+            
+        </div></div>
+
+        <div id="outerdiv">
+            <button class="update hide">Update</button>
+            <button class="delete hide">Delete</button>
+    
+            <span id="comments" style="color: blue;">Add Comments</span>
+            <span id="viewComments" style="color: blue;">View Comments</span>
+            <span id="viewImage" class="hide" style="color: blue;">View Image</span>
+            <span id="history" style="color: blue;">History</span>
+    
+        </div>
+    
+        </div>
+</body>
+<script src="../JS/ticketUpdation.js"></script>
+</html>
