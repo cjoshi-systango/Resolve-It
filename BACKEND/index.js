@@ -1,4 +1,4 @@
-// require("dotenv").config();
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const http = require("http");
@@ -6,9 +6,10 @@ const server = http.createServer(app);
 const bodyParser = require("body-parser");
 const cors = require('cors');
 
+let port = process.env.PORT || 4000
 
-server.listen(4000,()=>{
-    console.log("Server listen 4001");
+server.listen(port,()=>{
+    console.log("Server listen "+port);
 
 })
 app.use(bodyParser.json());

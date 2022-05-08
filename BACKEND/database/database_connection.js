@@ -5,7 +5,7 @@ const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: process.env.DB_PASS ,
-    database : "resolveIt",
+    database : "fridaydatabase",
     multipleStatements: true,
 })
 // console.log("bjusc");

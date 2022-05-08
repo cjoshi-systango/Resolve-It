@@ -17,6 +17,7 @@ id="bootstrap-css"
  <select  value="Department" id="department" style=" height:7%; border:1px solid grey;  border-radius:10px;" required >
  
 </select>
+<small id="registrationWarning" style="color:red; font-weight:600; display:none"> warning text here <!--Dynamic content here--> </small>
   
     <button onClick = "save()" class="btn" style="background-color: #7b97ea; color:white;  text-align:center; margin-left:43%">Register</button>
 
@@ -27,14 +28,16 @@ id="bootstrap-css"
 </div><!--end log form -->
 `;
 
-document.write(register);
+// document.write(register);
+
+let registrationPage = document.querySelector("#register");
+registrationPage.innerHTML = register;
+
+let registrationWarning = document.querySelector("#registrationWarning");
 
 
-
-
-setTimeout(() => {
     createUsertype();
-}, 1000);
+
 
 
 
@@ -109,8 +112,10 @@ function createUsertype() {
 // //function to save the user data in firebase 
 function save() {
 
+    let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     // varialbe to store data of user after user is created 
     let email, password, Name, usertype, department;
+
 
     email = document.querySelector("#userEmailInp").value;
     Name = document.querySelector("#userFnameInp").value;
@@ -118,51 +123,67 @@ function save() {
     usertype = document.querySelector("#userType").value;
     department = document.querySelector("#department").value;
     
-    console.log(department);
-    
-
-    let data = {
-        Email: email,
-        Name: Name,
-        Password: password,
-        Usertype: usertype,
-        Department : department,
+    if(email == "")
+    {
+        registrationWarning.innerHTML = "Email can not be null"
+        registrationWarning.style.display = "block"
     }
+    else if(Name == "")
+    {
+        registrationWarning.innerHTML = "Name can not be null"
+        registrationWarning.style.display = "block"
+    }
+    else if(!(email.match(validRegex)))
+    {
+        registrationWarning.innerHTML = "please enter valid email"
+        registrationWarning.style.display = "block"
 
-    fetch("http://localhost:4000/registration/register/", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
+    }
+    else{
+        let data = {
+            Email: email,
+            Name: Name,
+            Password: password,
+            Usertype: usertype,
+            Department : department,
         }
-    }).then(async (result) => {
-        let response = await result.json();
-        let data = response.data;
-        if (data == "register") {
-            alert("registerd");
-            Email.send({
-                Host: "smtp.gmail.com",
-                Username: "resolveItt@gmail.com",
-                Password: "resolveIt@13",
-                To: email,
-                From: "resolveItt@gmail.com",
-                Subject: "User Credentials",
-                Body: "Here are your credentials of resolveIt" + password,
-            }).then(
-                message => alert("mail sent successfully")
-        
-            )
-                .catch(error => alert(error));
+    
+        fetch("http://localhost:4000/registration/register/", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then(async (result) => {
+            let response = await result.json();
+            let data = response.data;
+            if (data == "register") {
+                alert("registerd");
+                Email.send({
+                    Host: "smtp.gmail.com",
+                    Username: "resolveItt@gmail.com",
+                    Password: "resolveIt@13",
+                    To: email,
+                    From: "resolveItt@gmail.com",
+                    Subject: "User Credentials",
+                    Body: "Here are your credentials of resolveIt" + password,
+                }).then(
+                    message => alert("mail sent successfully")
             
-        }
-        else if (data == "alreadyExist") {
-            alert("User email already exist");
-        }
-        // console.log(result.json());
-    })
-        .catch((e) => {
-            console.error(e);
+                )
+                    .catch(error => alert(error));
+                
+            }
+            else if (data == "alreadyExist") {
+                alert("User email already exist");
+            }
+            // console.log(result.json());
         })
-
+            .catch((e) => {
+                console.error(e);
+            })
+    
+    }
+   
 
 }

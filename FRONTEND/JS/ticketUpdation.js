@@ -11,6 +11,7 @@ let viewComment = document.querySelector("#viewComments");
 let viewImage = document.querySelector("#viewImage");
 let comments = document.querySelector("#comments");
 let fotter = document.querySelector("#outerdiv");
+let outerdivsource = document.querySelector("#outerdivsource");
 let textArea;
 let history = document.querySelector("#history");
 
@@ -67,12 +68,13 @@ fetch("http://localhost:4000/ticketUpdate/getUserType", {
 
 
 function addcomment() {
+    outerdivsource.innerHTML = "";
     textArea = document.createElement("textarea");
     let addBtn = document.createElement("button");
     addBtn.innerHTML = "Add";
     addBtn.addEventListener("click", storeComment)
-    fotter.appendChild(textArea);
-    fotter.appendChild(addBtn);
+    outerdivsource.appendChild(textArea);
+    outerdivsource.appendChild(addBtn);
 }
 let today = new Date();
 let currentdate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -129,10 +131,10 @@ function seeComment() {
     }).then(async (result) => {
         let response = await result.json();
         let data = response.data;
-
+        outerdivsource.innerHTML = "";
         if (data == "null") {
             Usercomments = "No comments";
-            fotter.appendChild(userComment);
+            outerdivsource.appendChild(userComment);
         }
         else {
             data.forEach(element => {
@@ -140,9 +142,9 @@ function seeComment() {
                 commentOfuser = element.user_name;
                 commentDate.innerHTML = element.date_time;
 
-                fotter.appendChild(userComment);
-                fotter.appendChild(userWhoCommented);
-                fotter.appendChild(commentDate);
+                outerdivsource.appendChild(userComment);
+                outerdivsource.appendChild(userWhoCommented);
+                outerdivsource.appendChild(commentDate);
             })
         }
         userComment.innerHTML = Usercomments;
@@ -174,23 +176,28 @@ function seeHistory() {
         if (data == null) {
             let historyData = document.createElement("p");
             historyData.innerHTML = "No Update History";
-            fotter.appendChild(historyData);
+            outerdivsource.appendChild(historyData);
         }
         else {
             console.log("done");
+            outerdivsource.innerHTML = "";
 
-
-
+            console.log(data);
+            
+            let updation_msg;
             data.forEach(element => {
-                let updatedBy = document.createElement("h6");
-                let updation_time = document.createElement("h6");
+                
+                updation_msg = document.createElement("h6");
+                
+                updation_msg.innerHTML = `Updated by ${element.update_by} ${element.update_time}`;
+               
+               
+                outerdivsource.appendChild(updation_msg);
 
-                updatedBy.innerHTML = element.update_by;
-                updation_time.innerHTML = element.update_time;
-
-                fotter.appendChild(updatedBy);
-                fotter.appendChild(updation_time);
+               
+                
             })
+           
         }
 
 
@@ -279,7 +286,7 @@ function getIssueDataForAdmin(userDepartmentId) {
                         if (element.imageUrl == null) image.alt = "no image found";
                         else image.src = element.imageUrl;
                     })
-                    fotter.appendChild(image);
+                    outerdivsource.appendChild(image);
                 }
 
                 function updateIssueStatus() {

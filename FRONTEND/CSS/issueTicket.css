@@ -43,4 +43,25 @@
   #tableBody:hover {
     cursor: pointer;
   }
+
+  #chatWithUs
+  {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    max-height: 10%;
+    max-width: 10%;
+    background-color: #7b97ea;
+    color: #7b97ea;
+   
+    
+    
+  }
+  #chatContainer{
+    background-color: #7b97ea;
+    color: #7b97ea;
+
+
+  }
+  
 /* tr:hover {background-color: coral;} */

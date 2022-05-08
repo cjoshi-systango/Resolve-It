@@ -1,22 +1,27 @@
 let login = document.querySelector("#login");
 let email,password;
 
+let loginNameWarning = document.querySelector("#loginNameWarning");
 
 login.addEventListener("click",logIn);
 
 // localStorage.setItem("Aurthorization","");
 
-function logIn()
+function logIn(e)
 {
+    e.preventDefault()
     email = document.querySelector("#InputEmail1").value;
     password = document.querySelector("#InputPassword1").value;
     if(email == "")
     {
-        console.log("please enter valid email");
+       loginNameWarning.innerHTML = "please enter valid email";
+       loginNameWarning.style.display = "block";
+
     }
     else if(password == "")
     {
-        console.log("please enter password");
+        loginNameWarning.innerHTML = "please enter password";
+        loginNameWarning.style.display = "block";
     }
     else{
         let data = {
