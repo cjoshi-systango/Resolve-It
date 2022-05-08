@@ -36,6 +36,9 @@ id="bootstrap-css"/>
 </table>
 </div>
 
+<div id="chatContainer">
+    <a href="../HTML/chatBoat.html" style= "width:100%; heigth:100%"><img id="chatWithUs" src="../IMAGES/chaticon.png" alt="chat With us"></a>   
+</div>
 `;
 // document.write(body)
 

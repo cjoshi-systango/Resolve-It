@@ -12,11 +12,20 @@ chatBoatrouter.get("/getStarted",auth,(req,res)=>{
 chatBoatrouter.post("/nextQuestion",auth,(req,res)=>{
    
     console.log(req.body); 
-    let {optionId,dateTime,user} = req.body;
-    chatBoatController.nextQuestion(req,res,optionId,dateTime,user);
+    let {optionId,qId,user,dateTime} = req.body;
+    chatBoatController.nextQuestion(req,res,optionId,qId,user,dateTime);
 });
 
+chatBoatrouter.post("/userIssue",auth,(req,res)=>{
+   
+    let{id,user} = req.body
+    chatBoatController.checkUserIssue(req,res,id,user);
+});
 
+chatBoatrouter.get("/getStartedForIssue",auth,(req,res)=>{
+   
+    chatBoatController.getStartedForIssue(req,res);
+});
 
 
 

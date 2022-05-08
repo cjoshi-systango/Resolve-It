@@ -214,19 +214,31 @@ fetch("http://localhost:4000/issuePortal/departmentDetails", {
     })
 
 
-
+let firstOption = document.createElement("option");
+firstOption.innerHTML = "Select--"
+let statusfirstOption = document.createElement("option");
+statusfirstOption.innerHTML = "Select--"
+let priorityfirstOption = document.createElement("option");
+priorityfirstOption.innerHTML = "Select--"
 function createIssuePortal() {
    
     issuePortal = document.querySelector("#registration_formmm");
-    issuePortal1 = document.querySelector("#registration_formmm1");
-
+    // issuePortal1 = document.querySelector("#registration_formmm1");
+    
     issueStatus = document.querySelector("#statusInp");
     issuePriority = document.querySelector("#PriorityInp");
     issueAssignTo = document.querySelector("#AssigneeInp");
     console.log(department.value);
+    issueAssignTo.innerHTML = ""
+    issueStatus.innerHTML = ""
+    issuePriority.innerHTML = ""
+
+    
     issuePortal.classList.remove("hide");
 
-
+    issueStatus.appendChild(statusfirstOption);
+    issuePriority.appendChild(priorityfirstOption);
+    issueAssignTo.appendChild(firstOption);
     fetch("http://localhost:4000/issuePortal/status", {
         method: "POST",
         // body: "",
@@ -333,6 +345,7 @@ function storeTicketData() {
     else if (issuePriority == "") alert("Must Select Priority");
     else if (issueAssignTo == "") alert("Must Select Priority");
     else if (issueDescription == "") issueDescription = "-";
+    else if (url == undefined) url = "";
     else {
         console.log(currentdate);
         let data = {

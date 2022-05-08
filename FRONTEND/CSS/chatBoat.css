@@ -41,7 +41,7 @@ body {
   #chatShowArea {
     height: calc(100% - 6rem);
     /* background-image: url("../images/general/chatWallpaperDay.jpg"); */
-    background-color:darkgray;
+    background-color:#7b97ea;
     background-repeat: no-repeat;
     background-size: cover;
   }
