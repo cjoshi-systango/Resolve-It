@@ -1,17 +1,29 @@
-let optionDiv = document.querySelector("#option")
+//fetch url to run on port
+let fetchUrl = "http://localhost:4000/";
 
+
+//getting the essential element from html
+let optionDiv = document.querySelector("#option")
 let aurthorizationToken = localStorage.getItem("Aurthorization")
 let userResponse = document.querySelector("#userResponse");
 let questionDiv = document.querySelector("#question");
 let chatShowArea = document.querySelector("#chatShowArea");
 
+//calling the function to check if user have raise any ticket 
+//and if user has raise the tickect then prepare the first question if not then prepare the first question 
 checkUserIssue();
+
+
+//creating the function to user issues he raised
 function checkUserIssue()
 {
+    //checking for user id from which user is logged In
     let userData={
         id : aurthorizationToken,
     }
-    fetch("http://localhost:4000/chatBoat/userIssue", {
+
+    //getting response for the url
+    fetch(fetchUrl+"chatBoat/userIssue", {
             method: "POST",
             body: JSON.stringify(userData),
             headers: {
@@ -22,12 +34,16 @@ function checkUserIssue()
         }).then(async (result) => {
             let response = await result.json();
             let data = response.data;
-            if(data)
+            console.log(data);
+            if(data != null)
             {
                 console.log("ll");
+                //if user have any issue ticket raised
                 firstQuestionForIssue();
             }
-            else{
+            else if(data == null){
+                
+                //if user doesn't have any issue ticket raised
                 firstQuestion();
             }
 
@@ -38,10 +54,11 @@ function checkUserIssue()
             })
 }
 
-
+//function for the user who has rasied any issue in past
 function firstQuestionForIssue()
 {
-    fetch("http://localhost:4000/chatBoat/getStartedForIssue", {
+    //this will get the first question
+    fetch(fetchUrl+"chatBoat/getStartedForIssue", {
         method: "GET",
         headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -99,11 +116,12 @@ function firstQuestionForIssue()
 }
 
 
-
+//function for the user who has not rasied any issue in past
 
 function firstQuestion() {
 
-    fetch("http://localhost:4000/chatBoat/getStarted", {
+    //this will get the first question
+    fetch(fetchUrl+"chatBoat/getStarted", {
         method: "GET",
         headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -161,10 +179,11 @@ function firstQuestion() {
 }
 
 
+// getting the current date
 let latestdate = new Date();
 let dateTime = latestdate.getFullYear() + "-0" + (latestdate.getMonth() + 1) + "-" + latestdate.getDate() + " " + latestdate.getHours() + ":" + latestdate.getMinutes() + ":" + latestdate.getSeconds() + "." + latestdate.getMilliseconds();
 
-
+// function to get question and option after one another
 function nextQuestion(idd,qId) {
     // let spans = document.querySelectorAll(".spans");
     // console.log(spans[1].id);
@@ -181,8 +200,8 @@ function nextQuestion(idd,qId) {
         user: aurthorizationToken,
         dateTime:dateTime,
     }
-
-    fetch("http://localhost:4000/chatBoat/nextQuestion", {
+    //this will get next question and option and will also store history
+    fetch(fetchUrl+"chatBoat/nextQuestion", {
         method: "POST",
         body: JSON.stringify(nextQuestionObject),
         headers: {

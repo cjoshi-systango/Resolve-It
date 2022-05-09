@@ -1,12 +1,17 @@
+//fetch url to run the port on
+let fetchUrl = "http://localhost:4000/";
+
+//getting and declaring the required variable
 let login = document.querySelector("#login");
 let email,password;
-
 let loginNameWarning = document.querySelector("#loginNameWarning");
 
+//adding the event listener on log in btn
 login.addEventListener("click",logIn);
 
 // localStorage.setItem("Aurthorization","");
 
+//function to check the user login credentials and if find ok log in the user
 function logIn(e)
 {
     e.preventDefault()
@@ -28,7 +33,8 @@ function logIn(e)
             Email : email,
             Password : password,
         }
-        fetch("http://localhost:4000/login/loginroutes/", {
+        //this will check the user credentials and log in 
+        fetch(fetchUrl+"login/loginroutes/", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {

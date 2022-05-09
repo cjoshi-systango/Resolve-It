@@ -245,6 +245,8 @@ function storeHistoryForDynamic(optionId,qId,user,dateTime)
 }
 
 function checkUserIssue(req, res, id) {
+
+    console.log(id);
     let decoded = jwt.verify(id, process.env.TOKEN_KEY)
     let queryToGetUser = `SELECT id FROM user_info where email = "${decoded.user}"`
     connection.query(queryToGetUser, (err, result) => {
@@ -252,11 +254,13 @@ function checkUserIssue(req, res, id) {
             console.log(err);
         }
         else if (result.length > 0) {
+            console.log(result);
             result.forEach(element => {
 
                 let queryToCheckIssue = `SELECT * FROM issue WHERE created_by = ${element.id};`
 
                 connection.query(queryToCheckIssue, (err, result) => {
+                    console.log(result);
                     if (err) {
                         console.log(err);
                     }
@@ -264,6 +268,12 @@ function checkUserIssue(req, res, id) {
                         console.log(result);
                         res.status(200).json({ success: true, data: result });
 
+                    }
+                    else
+                    {
+                        console.log("lll");
+                        res.status(200).json({ success: true, data: null });
+                        
                     }
                 })
 

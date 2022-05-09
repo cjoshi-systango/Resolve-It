@@ -46,23 +46,25 @@ let newIssue = document.querySelector("#issue");
 newIssue.innerHTML = body;
 
 
+//fetch url to run the port on
+let issuefetchUrl = "http://localhost:4000/";
 
 
+//getting all the required elememnt from html
 let tableBody = document.querySelector("#tableBody");
 let navRegisration = document.querySelector("#nav-registration");
 let navCreateDepartment = document.querySelector("#nav-createDepartment");
 let aurthorizationToken = localStorage.getItem("Aurthorization");
 
 
-
+//calling the function to show the all ticket
 showTicket();
 
+//function to show the ticket
 function showTicket() {
-   
 
-
-
-    fetch("http://localhost:4000/issueTicket/showTicket", {
+    //this will get all the tickets from database 
+    fetch(issuefetchUrl+"issueTicket/showTicket", {
         method: "GET",
         headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -124,7 +126,7 @@ function showTicket() {
             filter.addEventListener("change", addFilter)
             
             
-
+            //function to show ticket according to the filter
             function addFilter()
             {
                 filter = document.querySelector("#filter").value;

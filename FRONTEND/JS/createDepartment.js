@@ -18,21 +18,27 @@ let department = `
 let create = document.querySelector("#createDepartment");
 create.innerHTML = department;
 
+// fetch url to run on port
+let changeDepartmentfetchUrl = "http://localhost:4000/";
+
+//getting the essential element from html
 let departmentName = document.querySelector("#departmentName");
 let createDepartmentBtn = document.querySelector("#createDepartmentBtn");
 let departmentNameWarning = document.querySelector("#departmentNameWarning");
 
+//getting the token from the local storage for autorization
 aurthorizationToken = localStorage.getItem("Aurthorization");
 
+//adding event listners on button and the warning of error 
 createDepartmentBtn.addEventListener("click", storeDepartment);
 departmentName.addEventListener("click", removeWarning);
 
-
+//function to remove the warning after clicking on the input box
 function removeWarning(){
     departmentNameWarning.style.display = "none";
 }
 
-
+//function to store department in the database
 function storeDepartment() {
     departmentNameValue = departmentName.value;
     if(departmentNameValue == "")
@@ -47,8 +53,8 @@ function storeDepartment() {
         let departmentData = {
             Name: departmentNameValue
         }
-    
-        fetch("http://localhost:4000/createDepartment/departmentCreate/", {
+        //this will store the department in database
+        fetch(changeDepartmentfetchUrl+"createDepartment/departmentCreate/", {
             method: "POST",
             body: JSON.stringify(departmentData),
             headers: {
@@ -60,10 +66,14 @@ function storeDepartment() {
             let data = response.data;
             // console.log(data.user);
             if (data == "inserted") {
-                alert("Inserted sucsessFully");
+                // alert("Inserted sucsessFully");
+                departmentNameWarning.innerText = "Inserted sucsessFully";
+                departmentNameWarning.style.display = "block";
             }
             else {
-                alert("some error occured");
+                // alert("some error occured");
+                departmentNameWarning.innerText = "some error occured";
+                departmentNameWarning.style.display = "block";
             }
         })
             .catch((e) => {

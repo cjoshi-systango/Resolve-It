@@ -18,8 +18,9 @@ chatBoatrouter.post("/nextQuestion",auth,(req,res)=>{
 
 chatBoatrouter.post("/userIssue",auth,(req,res)=>{
    
-    let{id,user} = req.body
-    chatBoatController.checkUserIssue(req,res,id,user);
+   console.log("inside chatbot"); 
+    let{id} = req.body
+    chatBoatController.checkUserIssue(req,res,id);
 });
 
 chatBoatrouter.get("/getStartedForIssue",auth,(req,res)=>{

@@ -1,3 +1,7 @@
+//fetch url to run the port on
+let fetchUrl = "http://localhost:4000/";
+
+//getting all the required element 
 let issueData = document.querySelector("#issueData");
 let description = document.querySelector("#description");
 let subject = document.querySelector("#subject");
@@ -16,17 +20,22 @@ let textArea;
 let history = document.querySelector("#history");
 
 // let dateTime = new Date().toLocaleString();
+
+//this will get the current date andtime 
 let latestdate = new Date();
 let dateTime = latestdate.getFullYear() + "-0" + (latestdate.getMonth() + 1) + "-" + latestdate.getDate() + " " + latestdate.getHours() + ":" + latestdate.getMinutes() + ":" + latestdate.getSeconds() + "." + latestdate.getMilliseconds();
-
+//this wiil get the issue id from the url 
 url = window.location.search;
 let label = document.querySelector("#label");
 let issueId = url ? url.split('?')[1] : window.location.search.slice(1);
+
 console.log(issueId);
 // label.appendChild(issueId);
+
+//this will get the authorization token from local storage
 let aurthorizationToken = localStorage.getItem("Aurthorization");
 
-
+//adding event listener 
 comments.addEventListener("click", addcomment)
 viewComment.addEventListener("click", seeComment);
 history.addEventListener("click", seeHistory);
@@ -35,7 +44,8 @@ history.addEventListener("click", seeHistory);
 let data = {
     user: aurthorizationToken
 }
-fetch("http://localhost:4000/ticketUpdate/getUserType", {
+//this will get the user type of loged In user and will show the page according to its permissions
+fetch(fetchUrl+"ticketUpdate/getUserType", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -51,10 +61,11 @@ fetch("http://localhost:4000/ticketUpdate/getUserType", {
         console.log(element);
         if (element.read && !element.update) {
             console.log(element.read);
-
+            //calling the function for the user 
             getIssueDataForUser();
         }
         else if (element.read && element.update && element.delete) {
+            //calling the function for admin
             getIssueDataForAdmin(userDepartmentId);
         }
 
@@ -66,7 +77,7 @@ fetch("http://localhost:4000/ticketUpdate/getUserType", {
         console.error(e);
     })
 
-
+//function to add comment on issue
 function addcomment() {
     outerdivsource.innerHTML = "";
     textArea = document.createElement("textarea");
@@ -78,6 +89,7 @@ function addcomment() {
 }
 let today = new Date();
 let currentdate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+//this function will store the comments in database
 function storeComment() {
     console.log(currentdate);
     let comment = textArea.value;
@@ -87,8 +99,7 @@ function storeComment() {
         comment: comment,
         userId: aurthorizationToken,
     }
-
-    fetch("http://localhost:4000/ticketUpdate/storeComment", {
+    fetch(fetchUrl+"ticketUpdate/storeComment", {
         method: "POST",
         body: JSON.stringify(commentData),
         headers: {
@@ -111,6 +122,8 @@ function storeComment() {
 let userComment = document.createElement("p");
 let userWhoCommented = document.createElement("h6");
 let commentDate = document.createElement("h6");
+
+//function to get the comments from database and to show
 function seeComment() {
 
 
@@ -121,7 +134,7 @@ function seeComment() {
     let getCommentOfIssue = {
         issueId: issueId
     }
-    fetch("http://localhost:4000/ticketUpdate/fetchComment", {
+    fetch(fetchUrl+"ticketUpdate/fetchComment", {
         method: "POST",
         body: JSON.stringify(getCommentOfIssue),
         headers: {
@@ -158,12 +171,12 @@ function seeComment() {
             console.error(e);
         })
 }
-
+//function to show the history of update
 function seeHistory() {
     let getUpdateHistory = {
         issueId: issueId
     }
-    fetch("http://localhost:4000/ticketUpdate/fetchUpdateHistory", {
+    fetch(fetchUrl+"ticketUpdate/fetchUpdateHistory", {
         method: "POST",
         body: JSON.stringify(getUpdateHistory),
         headers: {
@@ -211,7 +224,7 @@ function seeHistory() {
         })
 }
 
-
+//function to get data for admins 
 function getIssueDataForAdmin(userDepartmentId) {
     let label = document.createElement("label");
     let status = document.createElement("select");
@@ -221,7 +234,7 @@ function getIssueDataForAdmin(userDepartmentId) {
     let data = {
         id: issueId
     }
-    fetch("http://localhost:4000/ticketUpdate/getIssueDataForAdmin", {
+    fetch(fetchUrl+"ticketUpdate/getIssueDataForAdmin", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -295,7 +308,7 @@ function getIssueDataForAdmin(userDepartmentId) {
                         id: issueId,
                         status: status.value,
                     }
-                    fetch("http://localhost:4000/ticketUpdate/updateIssueStatus", {
+                    fetch(fetchUrl+"ticketUpdate/updateIssueStatus", {
                         method: "POST",
                         body: JSON.stringify(updateData),
                         headers: {
@@ -315,7 +328,7 @@ function getIssueDataForAdmin(userDepartmentId) {
                             updateTo: status.value
                         }
 
-                        fetch("http://localhost:4000/ticketUpdate/storeUpdateHistory", {
+                        fetch(fetchUrl+"ticketUpdate/storeUpdateHistory", {
                             method: "POST",
                             body: JSON.stringify(updateHistory),
                             headers: {
@@ -341,7 +354,7 @@ function getIssueDataForAdmin(userDepartmentId) {
                     let deleteIssue = {
                         id: issueId
                     }
-                    fetch("http://localhost:4000/ticketUpdate/deleteIssue", {
+                    fetch(fetchUrl+"ticketUpdate/deleteIssue", {
                         method: "POST",
                         body: JSON.stringify(deleteIssue),
                         headers: {
@@ -371,7 +384,7 @@ function getIssueDataForAdmin(userDepartmentId) {
         })
 }
 
-
+//function to get the data for user
 function getIssueDataForUser() {
     let label = document.createElement("label");
     let status = document.createElement("span");
@@ -379,7 +392,7 @@ function getIssueDataForUser() {
     let data = {
         id: issueId
     }
-    fetch("http://localhost:4000/ticketUpdate/getIssueDataForUser", {
+    fetch(fetchUrl+"ticketUpdate/getIssueDataForUser", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
