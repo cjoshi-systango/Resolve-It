@@ -19,7 +19,7 @@ id="bootstrap-css"
 </select>
 <small id="registrationWarning" style="color:red; font-weight:600; display:none"> warning text here <!--Dynamic content here--> </small>
   
-    <button onClick = "save()" class="btn" style="background-color: #7b97ea; color:white;  text-align:center; margin-left:43%">Register</button>
+    <button id = "registrationBtn" class="btn" style="background-color: #7b97ea; color:white;  text-align:center; margin-left:43%">Register</button>
 
 </div>
    
@@ -33,31 +33,27 @@ id="bootstrap-css"
 let registrationPage = document.querySelector("#register");
 registrationPage.innerHTML = register;
 
+
+
 let registrationWarning = document.querySelector("#registrationWarning");
 
+//fetch url to run the port on
+let fetchUrl = "http://localhost:4000/";
 
-    createUsertype();
+let registrationBtn =document.querySelector("#registrationBtn");
+registrationBtn.addEventListener("click",save);
 
+//calling the function which will fetch all the user type from database 
+createUsertype();
 
-
-
-
-
-// let createUserBtn = document.querySelector("#createUser");
-// createUserBtn.addEventListener("click", save)
-// 
-// /
-
-// // window.addEventListener("load",createUsertype)
-
-
-// 
-
+// function to get all the user type from database
 function createUsertype() {
 
     let userType = document.querySelector("#userType");
     let Department = document.querySelector("#department");
-    fetch("http://localhost:4000/registration/usertype", {
+
+    //this will get all the user type
+    fetch(fetchUrl+"registration/usertype", {
         method: "POST",
         // body: "",
         headers: {
@@ -81,8 +77,8 @@ function createUsertype() {
             console.error(e);
         })
 
-
-    fetch("http://localhost:4000/registration/department", {
+    //this will get all the department from the data base
+    fetch( fetchUrl+"registration/department", {
         method: "GET",
         // body: "",
         headers: {
@@ -110,8 +106,9 @@ function createUsertype() {
 
 
 // //function to save the user data in firebase 
-function save() {
+function save(e) {
 
+    e.preventDefault()
     let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     // varialbe to store data of user after user is created 
     let email, password, Name, usertype, department;
@@ -147,8 +144,8 @@ function save() {
             Usertype: usertype,
             Department : department,
         }
-    
-        fetch("http://localhost:4000/registration/register/", {
+        //this will register user in database
+        fetch(fetchUrl+"registration/register/", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {

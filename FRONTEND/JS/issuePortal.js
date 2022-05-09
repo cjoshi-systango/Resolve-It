@@ -84,14 +84,18 @@ console.log("new issue");
 let newIssue = document.querySelector("#newissue");
 newIssue.innerHTML = body;
 
+//fetch url to run the port on
+let fetchUrl = "http://localhost:4000/";
 
+//getting the essential element from html
 let departmentinputState = document.querySelector("#departmentSelect");
 console.log(departmentinputState);
 
+//importing the required methods to store image in firebase
 import { getStorage, sref, uploadBytesResumable, getDownloadURL } from "../JS/firebase.js";
 
 
-
+//decraling the required element
 let department = document.getElementById("departmentSelect");
 let files = [];
 let reader = new FileReader();
@@ -104,11 +108,13 @@ let selectImageInp = document.querySelector("#selectfileInp");
 let imageName =""
 let imageExtension =""
 
+
+//getting the token from the local storage for authorization
 let aurthorizationToken = localStorage.getItem("Aurthorization");
 
 // // console.log(de);
 
-
+//getting the image file after selecting
 selectImageInp.onchange = e => {
     files = e.target.files;
     // files = selectImageInp.value;
@@ -122,20 +128,20 @@ selectImageInp.onchange = e => {
     reader.readAsDataURL(files[0]);
 
 }
-
+//function to get the extension of the image to store
 function getExtemsionOfFile(file) {
     let temp = file.name.split(".");
     ext = temp.slice((temp.length - 1), (temp.length));
     return "." + ext[0];
 }
-
+//function to get the name of the image to store
 function getNameOfFile(file) {
     let temp = file.name.split(".");
     fname = temp.slice(0, -1).join(".");
     return fname;
 }
 let url;
-
+//function to upload the image in firebase
 async function imageUpload() {
     console.log("tttttttttttttt");
     alert('data')
@@ -157,7 +163,7 @@ async function imageUpload() {
     UPLOADING.on("state-changed", (snapshot) => {
         console.log(",sx");
 
-
+        //this will get the download url of the image 
         const PROMISE = getDownloadURL(UPLOADING.snapshot.ref).then((downloadURL) => {
             console.log("inside download")
             console.log(downloadURL);
@@ -180,15 +186,12 @@ async function imageUpload() {
 
 }
 
-// let url = function imageUrl (imageUrl)
-// {
-//     return imageUrl
-// }
 
+// adding the event listener on the upload button 
 uploadImage.addEventListener("click", imageUpload);
 
-
-fetch("http://localhost:4000/issuePortal/departmentDetails", {
+//this will get the all department from database
+fetch(fetchUrl+"issuePortal/departmentDetails", {
     method: "POST",
     // body: "",
     headers: {
@@ -213,13 +216,15 @@ fetch("http://localhost:4000/issuePortal/departmentDetails", {
         console.error(e);
     })
 
-
+//creating the first option for different select 
 let firstOption = document.createElement("option");
 firstOption.innerHTML = "Select--"
 let statusfirstOption = document.createElement("option");
 statusfirstOption.innerHTML = "Select--"
 let priorityfirstOption = document.createElement("option");
 priorityfirstOption.innerHTML = "Select--"
+
+//this function will create the issue poratl after user select the department he wants to raise issue in
 function createIssuePortal() {
    
     issuePortal = document.querySelector("#registration_formmm");
@@ -239,7 +244,9 @@ function createIssuePortal() {
     issueStatus.appendChild(statusfirstOption);
     issuePriority.appendChild(priorityfirstOption);
     issueAssignTo.appendChild(firstOption);
-    fetch("http://localhost:4000/issuePortal/status", {
+
+    //this will get all the status stored in database
+    fetch(fetchUrl+"issuePortal/status", {
         method: "POST",
         // body: "",
         headers: {
@@ -264,7 +271,8 @@ function createIssuePortal() {
             console.error(e);
         })
 
-    fetch("http://localhost:4000/issuePortal/priority", {
+    //this will get all the priority stored in database
+    fetch(fetchUrl+"issuePortal/priority", {
         method: "POST",
         // body: "",
         headers: {
@@ -293,7 +301,9 @@ function createIssuePortal() {
     let departmentValue = {
         Department: department.value,
     }
-    fetch("http://localhost:4000/issuePortal/assignTo", {
+
+    //this will get all the admin of the selected department
+    fetch(fetchUrl+"issuePortal/assignTo", {
         method: "POST",
         body: JSON.stringify(departmentValue),
         headers: {
@@ -323,9 +333,13 @@ function createIssuePortal() {
         })
 
 }
+
+//this will get the date on which the issue is cerated 
 let today = new Date();
 let currentdate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
+
+//function to store the ticket data in the database
 function storeTicketData() {
 
     // if(selectImageInp.value != "")
@@ -361,8 +375,8 @@ function storeTicketData() {
 
         }
         console.log(data);
-
-        fetch("http://localhost:4000/issuePortal/createIssue", {
+        //this will store the data in database
+        fetch(fetchUrl+"issuePortal/createIssue", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
