@@ -6,10 +6,10 @@ const server = http.createServer(app);
 const bodyParser = require("body-parser");
 const cors = require('cors');
 
-let port = process.env.PORT || 4000
+const PORT = process.env.PORT || 4000
 
-server.listen(port,()=>{
-    console.log("Server listen "+port);
+server.listen(PORT,()=>{
+    console.log("Server listen "+PORT);
 
 })
 app.use(bodyParser.json());
