@@ -1,5 +1,7 @@
+import {fetchUrl} from "../JS/config.js";
+
 //fetch url to run the port on
-let fetchUrl = "http://localhost:4000/";
+// let fetchUrl = "http://localhost:4000/";
 
 //getting and declaring the required variable
 let login = document.querySelector("#login");
@@ -48,7 +50,7 @@ function logIn(e)
                 console.log(data.token);
                 localStorage.setItem("Aurthorization",data.token);
                 alert("userExist");
-                location.href = "../HTML/index1.html"
+                location.href = "../HTML/index.html"
             }
             else if(data == "noUserFound")
             {

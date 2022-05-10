@@ -13,7 +13,7 @@ id="bootstrap-css"
 
 <div id="registration_formmm" class="hide" style="position: relative;"> 
     <div class="log-form" style="position: absolute; top: 50%; right: 50%; transform: translate(-50%,0%);">
-        <h2 style="font-weight:bold;  text-align:center; background-color: #d3dcf8; color:white; ">New Issue</h2>
+        <h2 style="font-weight:bold;  text-align:center; background-color: #7b97ea; color:white; ">New Issue</h2>
 
             
                 <div class="row">
@@ -52,9 +52,9 @@ id="bootstrap-css"
                 </div>
                 <div class="row">
     
-                    <label  style="color:black; font-weight: bold; ">Select File</label>
-                    <input type="file" class="form-control" id="selectfileInp" style="border:1px solid grey;  border-radius:10px; width:80%; height:2%; margin-left:1%;">
-                    <button id="UploadImage" style="display:inline; width:fit-content; background-color:#7b97ea; color:white;  width:15%; height:2%; margin-top:1.5%; margin-left:1%">Upload</button>
+                    <label  style="color:black; font-weight: bold; margin-left:2% ">Select File</label>
+                    <input type="file" class="form-control" id="selectfileInp" style="border:1px solid grey;  border-radius:10px; max-width:60%; height:2%; margin-left:1%;">
+                    <button id="UploadImage" style="display:inline; width:fit-content; background-color:#7b97ea; color:white;  max-width:15%; height:2%; margin-top:1.5%; margin-right:10%">Upload</button>
                 </div> 
                 
             
@@ -85,7 +85,9 @@ let newIssue = document.querySelector("#newissue");
 newIssue.innerHTML = body;
 
 //fetch url to run the port on
-let fetchUrl = "http://localhost:4000/";
+import {fetchUrl} from "../JS/config.js";
+
+// let fetchUrl = "http://localhost:4000/";
 
 //getting the essential element from html
 let departmentinputState = document.querySelector("#departmentSelect");

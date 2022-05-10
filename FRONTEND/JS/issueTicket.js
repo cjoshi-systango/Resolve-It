@@ -47,7 +47,9 @@ newIssue.innerHTML = body;
 
 
 //fetch url to run the port on
-let issuefetchUrl = "http://localhost:4000/";
+import {fetchUrl} from "../JS/config.js";
+
+// let fetchUrl = "http://localhost:4000/";
 
 
 //getting all the required elememnt from html
@@ -64,7 +66,7 @@ showTicket();
 function showTicket() {
 
     //this will get all the tickets from database 
-    fetch(issuefetchUrl+"issueTicket/showTicket", {
+    fetch(fetchUrl+"issueTicket/showTicket", {
         method: "GET",
         headers: {
             "Content-type": "application/json; charset=UTF-8",

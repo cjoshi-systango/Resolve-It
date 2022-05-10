@@ -27,7 +27,11 @@ function checkUserCredentials(Email, Password,req,res) {
                     const token  =   jwt.sign({user}, process.env.TOKEN_KEY)
                     res.status(200).json({ success: true, data: {user,token}});
                 }
-                
+                else
+                {
+                 res.status(400).json({ success: false, data: "noUserFound" });
+
+                }
             })
             
             
