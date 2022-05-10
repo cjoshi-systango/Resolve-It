@@ -14,14 +14,14 @@ server.listen(PORT,()=>{
 })
 app.use(bodyParser.json());
  
-const registerRouter = require("./routes/register")
-const loginRouter = require("./routes/loginRoutes")
-const issuePortalRouter = require("./routes/issueCreate")
-const issueTicketRouter = require("./routes/issueTicket")
-const ticketUpdationRouter = require("./routes/ticketUpdation")
-const changePasswordRouter = require("./routes/changePassword"); 
-const chatBoatRouter = require("./routes/chatBoat")
-const createDepartment = require("./routes/createDepartment");
+const registerRouter = require("./BACKEND/routes/register")
+const loginRouter = require("./BACKEND/routes/loginRoutes")
+const issuePortalRouter = require("./BACKEND/routes/issueCreate")
+const issueTicketRouter = require("./BACKEND/routes/issueTicket")
+const ticketUpdationRouter = require("./BACKEND/routes/ticketUpdation")
+const changePasswordRouter = require("./BACKEND/routes/changePassword"); 
+const chatBoatRouter = require("./BACKEND/routes/chatBoat")
+const createDepartment = require("./BACKEND/routes/createDepartment");
 
 app.use(cors());
 app.use("/login",loginRouter);
