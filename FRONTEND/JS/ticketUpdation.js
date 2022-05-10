@@ -1,5 +1,7 @@
 //fetch url to run the port on
-let fetchUrl = "http://localhost:4000/";
+import {fetchUrl} from "../JS/config.js";
+
+// let fetchUrl = "http://localhost:4000/";
 
 //getting all the required element 
 let issueData = document.querySelector("#issueData");
@@ -25,7 +27,7 @@ let history = document.querySelector("#history");
 let latestdate = new Date();
 let dateTime = latestdate.getFullYear() + "-0" + (latestdate.getMonth() + 1) + "-" + latestdate.getDate() + " " + latestdate.getHours() + ":" + latestdate.getMinutes() + ":" + latestdate.getSeconds() + "." + latestdate.getMilliseconds();
 //this wiil get the issue id from the url 
-url = window.location.search;
+let url = window.location.search;
 let label = document.querySelector("#label");
 let issueId = url ? url.split('?')[1] : window.location.search.slice(1);
 

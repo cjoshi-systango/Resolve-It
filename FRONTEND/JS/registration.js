@@ -38,7 +38,9 @@ registrationPage.innerHTML = register;
 let registrationWarning = document.querySelector("#registrationWarning");
 
 //fetch url to run the port on
-let fetchUrl = "http://localhost:4000/";
+import {fetchUrl} from "../JS/config.js";
+
+// let fetchUrl = "http://localhost:4000/";
 
 let registrationBtn =document.querySelector("#registrationBtn");
 registrationBtn.addEventListener("click",save);

@@ -1,5 +1,7 @@
 //fetch url to run on port 
-let fetchUrl = "http://localhost:4000/";
+import {fetchUrl} from "../JS/config.js";
+
+// let fetchUrl = "http://localhost:4000/";
 
 //declration of valriables 
 let oldPassword,newPassword 
@@ -13,8 +15,9 @@ changePasswordBtn.addEventListener("click",changePassword)
 
 
 //function to change password in database
-function changePassword()
+function changePassword(e)
 {
+    e.preventDefault()
     //getting the value from html for old password and new password
     oldPassword = document.querySelector("#inputPasswordOld").value;
     newPassword = document.querySelector("#inputPasswordNew").value;

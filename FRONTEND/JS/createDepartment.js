@@ -19,7 +19,8 @@ let create = document.querySelector("#createDepartment");
 create.innerHTML = department;
 
 // fetch url to run on port
-let changeDepartmentfetchUrl = "http://localhost:4000/";
+import {fetchUrl} from "../JS/config.js";
+// let fetchUrl = "http://localhost:4000/";
 
 //getting the essential element from html
 let departmentName = document.querySelector("#departmentName");
@@ -27,7 +28,7 @@ let createDepartmentBtn = document.querySelector("#createDepartmentBtn");
 let departmentNameWarning = document.querySelector("#departmentNameWarning");
 
 //getting the token from the local storage for autorization
-aurthorizationToken = localStorage.getItem("Aurthorization");
+let aurthorizationToken = localStorage.getItem("Aurthorization");
 
 //adding event listners on button and the warning of error 
 createDepartmentBtn.addEventListener("click", storeDepartment);
@@ -54,7 +55,7 @@ function storeDepartment() {
             Name: departmentNameValue
         }
         //this will store the department in database
-        fetch(changeDepartmentfetchUrl+"createDepartment/departmentCreate/", {
+        fetch(fetchUrl+"createDepartment/departmentCreate/", {
             method: "POST",
             body: JSON.stringify(departmentData),
             headers: {
