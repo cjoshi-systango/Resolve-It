@@ -8,10 +8,14 @@ const cors = require('cors');
 
 const PORT = process.env.PORT || 4000
 
-app.get("",(req,res)=>{
+// app.set('views', __dirname + '/views');
+app.engine('html', require('ejs').renderFile);
+
+app.get("/",(req,res)=>{
     console.log("gettt");
-    res.render("./index.html")
+    res.render("index.html")
 })
+
 
 server.listen(PORT,()=>{
     console.log("Server listen "+PORT);
