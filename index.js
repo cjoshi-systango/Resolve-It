@@ -8,6 +8,10 @@ const cors = require('cors');
 
 const PORT = process.env.PORT || 4000
 
+app.get("/",()=>{
+    console.log("gettt");
+})
+
 server.listen(PORT,()=>{
     console.log("Server listen "+PORT);
 
