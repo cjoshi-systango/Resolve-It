@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 4000
 
 app.get("",(req,res)=>{
     console.log("gettt");
-    res.render("index")
+    res.render("./index.html")
 })
 
 server.listen(PORT,()=>{
