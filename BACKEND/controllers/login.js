@@ -9,7 +9,7 @@ function checkUserCredentials(Email, Password,req,res) {
     // console.log(encrypedPassword + "dvdv");
     let queryToCheckEmailPassword = `SELECT * FROM user_info WHERE email = "${Email}";`;
     connection.query(queryToCheckEmailPassword, (err, result) => {
-        if(result.length > 0 && result!=null) {
+        if( result!=null && result.length > 0  ) {
             console.log(result);
             console.log("user found");
             result.forEach(element => {
@@ -30,7 +30,7 @@ function checkUserCredentials(Email, Password,req,res) {
                 else
                 {
                  res.status(400).json({ success: false, data: "noUserFound" });
-
+                //  connection.end()
                 }
             })
             
