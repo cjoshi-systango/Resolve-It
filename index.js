@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const path = require("path")
 const http = require("http");
 const server = http.createServer(app);
 const bodyParser = require("body-parser");
@@ -8,18 +9,24 @@ const cors = require('cors');
 
 const PORT = process.env.PORT || 4000
 
-app.set('views', __dirname + '/views');
-app.engine('html', require('ejs').renderFile);
+app.use(express.static(path.join(__dirname, '/FRONTEND'))); 
+// console.log(path.join(__dirname, 'FRONTEND'));
+app.set('views', __dirname + '/FRONTEND/HTML');
+// app.engine('html', require('ejs').renderFile);
+// app.engine('css', require('ejs').renderFile);
+
 
 app.get("/",(req,res)=>{
     console.log("gettt");
-    res.render("login.html")
+    res.sendFile(path.join(__dirname, "./FRONTEND/HTML/login.html"))
+    // res.sendFile(path.join(__dirname, "./FRONTEND/JS/login.js"))
+        
 })
 
-app.get("/index",(req,res)=>{
-    console.log("gettt");
-    res.render("index.html")
-})
+// app.get("/index",(req,res)=>{
+//     console.log("gettt");
+//     res.render("index.html")
+// })
 
 server.listen(PORT,()=>{
     console.log("Server listen "+PORT);
@@ -46,3 +53,4 @@ app.use("/changePassword",changePasswordRouter);
 app.use("/chatBoat",chatBoatRouter);
 app.use("/createDepartment",createDepartment);
 // app.use(express.static())
+
