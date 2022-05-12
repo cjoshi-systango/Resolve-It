@@ -50,7 +50,7 @@ function logIn(e)
                 console.log(data.token);
                 localStorage.setItem("Aurthorization",data.token);
                 alert("userExist");
-                location.href = "../FRONTEND/HTML/index.html"
+                location.href = "HTML/index.html"
             }
             else if(data == "noUserFound")
             {
