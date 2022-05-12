@@ -6,6 +6,7 @@ const http = require("http");
 const server = http.createServer(app);
 const bodyParser = require("body-parser");
 const cors = require('cors');
+const fs = require("fs");
 
 const PORT = process.env.PORT || 4000
 
@@ -32,6 +33,7 @@ server.listen(PORT,()=>{
     console.log("Server listen "+PORT);
 
 })
+
 app.use(bodyParser.json());
  
 const registerRouter = require("./BACKEND/routes/register")
