@@ -8,7 +8,7 @@ const cors = require('cors');
 
 const PORT = process.env.PORT || 4000
 
-// app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 
 app.get("/",(req,res)=>{
