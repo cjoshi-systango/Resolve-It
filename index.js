@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const path = require('path')
 const http = require("http");
 const server = http.createServer(app);
 const bodyParser = require("body-parser");
@@ -8,6 +9,7 @@ const cors = require('cors');
 
 const PORT = process.env.PORT || 4000
 
+app.use(express.static(path.join(__dirname, 'FRONTEND')));
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 
