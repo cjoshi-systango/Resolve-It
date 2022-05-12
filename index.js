@@ -13,7 +13,7 @@ app.engine('html', require('ejs').renderFile);
 
 app.get("/",(req,res)=>{
     console.log("gettt");
-    res.render("index.html")
+    res.render("login.html")
 })
 
 

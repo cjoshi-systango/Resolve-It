@@ -2,10 +2,10 @@ mysql = require("mysql");
 require('dotenv').config()
 
 const connection = mysql.createConnection({
-    host: "sql205.epizy.com",
-    user: "epiz_31694482",
-    password: 'chetan1565' ,
-    database : "epiz_31694482_resolveIt",
+    host: "sql11.freesqldatabase.com",
+    user: "sql11491580",
+    password: 'RX24ezevq9' ,
+    database : "sql11491580",
     multipleStatements: true,
 })
 // console.log("bjusc");
