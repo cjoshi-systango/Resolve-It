@@ -16,6 +16,10 @@ app.get("/",(req,res)=>{
     res.render("login.html")
 })
 
+app.get("/index",(req,res)=>{
+    console.log("gettt");
+    res.render("index.html")
+})
 
 server.listen(PORT,()=>{
     console.log("Server listen "+PORT);
