@@ -38,19 +38,19 @@ registrationPage.innerHTML = register;
 let registrationWarning = document.querySelector("#registrationWarning");
 
 //fetch url to run the port on
-// import {fetchUrl} from "../JS/config.js";
-let fetchUrl
+import {fetchUrl} from "../JS/config.js";
+// let fetchUrl
 
-import * as fetchurl from './config.js'
-setTimeout(() => {
-    console.log(Object.values(fetchurl) );
-    fetchUrl = Object.values(fetchurl)
-    //calling the function which will fetch all the user type from database 
-    createUsertype();
+// import * as fetchurl from './config.js'
+// setTimeout(() => {
+//     console.log(Object.values(fetchurl) );
+//     fetchUrl = Object.values(fetchurl)
+//     //calling the function which will fetch all the user type from database 
 
-}, 1000);
-console.log(fetchurl);
+// }, 1000);
+// console.log(fetchurl);
 
+createUsertype();
 
 console.log(fetchUrl);
 

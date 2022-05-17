@@ -47,19 +47,19 @@ newIssue.innerHTML = body;
 
 
 //fetch url to run the port on
-// import {fetchUrl} from "../JS/config.js";
-let fetchUrl 
+import {fetchUrl} from "../JS/config.js";
+// let fetchUrl 
 
 
-import * as fetchurl from './config.js'
-setTimeout(() => {
-    console.log(Object.values(fetchurl) );
-    fetchUrl = Object.values(fetchurl);
-    //calling the function to show the all ticket
+// import * as fetchurl from './config.js'
+// setTimeout(() => {
+//     console.log(Object.values(fetchurl) );
+//     fetchUrl = Object.values(fetchurl);
+//     //calling the function to show the all ticket
 
-    showTicket();
-}, 1000);
-console.log(fetchurl);
+// }, 1000);
+// console.log(fetchurl);
+showTicket();
 
 // let fetchUrl = "http://localhost:4000/";
 
