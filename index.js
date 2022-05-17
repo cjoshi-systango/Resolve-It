@@ -8,19 +8,19 @@ const bodyParser = require("body-parser");
 const cors = require('cors');
 const fs = require('fs')
 
-let obj = {
-    table : []
-};
+// let obj = {
+//     table : []
+// };
 
 
 const PORT = process.env.PORT || 4001
 
-obj.table.push({port:PORT})
-let jsoon = JSON.stringify(obj);
-fs.writeFile('./FRONTEND/PortJson',jsoon,'utf-8',(err,result)=>{
-    if(err) console.log(err);
-    else console.log("saved");
-})
+// obj.table.push({port:PORT})
+// let jsoon = JSON.stringify(obj);
+// fs.writeFile('./FRONTEND/PortJson',jsoon,'utf-8',(err,result)=>{
+//     if(err) console.log(err);
+//     else console.log("saved");
+// })
 
 
 app.use(express.static(path.join(__dirname, '/FRONTEND'))); 

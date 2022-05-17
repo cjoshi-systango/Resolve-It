@@ -1,17 +1,18 @@
 //fetch url to run on port
 // let fetchUrl = "http://localhost:4000/";
-let fetchUrl 
+// let fetchUrl 
 
-import * as fetchurl from './config.js'
-setTimeout(() => {
-    console.log(Object.values(fetchurl) );
-    fetchUrl = Object.values(fetchurl)
-    //calling the function to check if user have raise any ticket 
-    //and if user has raise the tickect then prepare the first question if not then prepare the first question 
-    checkUserIssue();
-}, 1000);
-console.log(fetchurl);
+// import * as fetchurl from './config.js'
+// setTimeout(() => {
+//     console.log(Object.values(fetchurl) );
+//     fetchUrl = Object.values(fetchurl)
+//     //calling the function to check if user have raise any ticket 
+//     //and if user has raise the tickect then prepare the first question if not then prepare the first question 
+// }, 1000);
+// console.log(fetchurl);
+import {fetchUrl} from "../JS/config.js";
 
+checkUserIssue();
 
 
 //getting the essential element from html
