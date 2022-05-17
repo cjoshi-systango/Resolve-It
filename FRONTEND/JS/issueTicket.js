@@ -47,7 +47,17 @@ newIssue.innerHTML = body;
 
 
 //fetch url to run the port on
-import {fetchUrl} from "../JS/config.js";
+// import {fetchUrl} from "../JS/config.js";
+let fetchUrl 
+
+
+import * as fetchurl from './config.js'
+setTimeout(() => {
+    console.log(Object.values(fetchurl) );
+    fetchUrl = Object.values(fetchurl)
+    showTicket();
+}, 100);
+console.log(fetchurl);
 
 // let fetchUrl = "http://localhost:4000/";
 
@@ -60,11 +70,11 @@ let aurthorizationToken = localStorage.getItem("Aurthorization");
 
 
 //calling the function to show the all ticket
-showTicket();
+
 
 //function to show the ticket
 function showTicket() {
-
+    console.log(fetchUrl);
     //this will get all the tickets from database 
     fetch(fetchUrl+"issueTicket/showTicket", {
         method: "GET",

@@ -1,5 +1,15 @@
 //fetch url to run on port 
-import {fetchUrl} from "../JS/config.js";
+// import {fetchUrl} from "../JS/config.js";
+
+let fetchUrl 
+
+import * as fetchurl from './config.js'
+setTimeout(() => {
+    console.log(Object.values(fetchurl) );
+    fetchUrl = Object.values(fetchurl)
+}, 100);
+console.log(fetchurl);
+
 
 // let fetchUrl = "http://localhost:4000/";
 

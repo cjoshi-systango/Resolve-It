@@ -1,5 +1,17 @@
 //fetch url to run on port
-let fetchUrl = "http://localhost:4000/";
+// let fetchUrl = "http://localhost:4000/";
+let fetchUrl 
+
+import * as fetchurl from './config.js'
+setTimeout(() => {
+    console.log(Object.values(fetchurl) );
+    fetchUrl = Object.values(fetchurl)
+    //calling the function to check if user have raise any ticket 
+    //and if user has raise the tickect then prepare the first question if not then prepare the first question 
+    checkUserIssue();
+}, 100);
+console.log(fetchurl);
+
 
 
 //getting the essential element from html
@@ -9,9 +21,7 @@ let userResponse = document.querySelector("#userResponse");
 let questionDiv = document.querySelector("#question");
 let chatShowArea = document.querySelector("#chatShowArea");
 
-//calling the function to check if user have raise any ticket 
-//and if user has raise the tickect then prepare the first question if not then prepare the first question 
-checkUserIssue();
+
 
 
 //creating the function to user issues he raised
