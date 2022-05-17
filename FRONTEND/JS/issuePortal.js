@@ -85,18 +85,18 @@ let newIssue = document.querySelector("#newissue");
 newIssue.innerHTML = body;
 
 //fetch url to run the port on
-// import {fetchUrl} from "../JS/config.js";
-let fetchUrl 
+import {fetchUrl} from "../JS/config.js";
+// let fetchUrl 
 
 
-import * as fetchurl from './config.js'
-setTimeout(() => {
-    console.log(Object.values(fetchurl) );
-    fetchUrl = Object.values(fetchurl)
-    getDepartment();
-}, 1000);
-console.log(fetchurl);
+// import * as fetchurl from './config.js'
+// setTimeout(() => {
+//     console.log(Object.values(fetchurl) );
+//     fetchUrl = Object.values(fetchurl)
+// }, 1000);
+// console.log(fetchurl);
 
+getDepartment();
 
 //getting the essential element from html
 let departmentinputState = document.querySelector("#departmentSelect");
