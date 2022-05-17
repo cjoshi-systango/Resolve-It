@@ -59,7 +59,6 @@ import {fetchUrl} from "../JS/config.js";
 
 // }, 1000);
 // console.log(fetchurl);
-showTicket();
 
 // let fetchUrl = "http://localhost:4000/";
 
@@ -70,6 +69,7 @@ let navRegisration = document.querySelector("#nav-registration");
 let navCreateDepartment = document.querySelector("#nav-createDepartment");
 let aurthorizationToken = localStorage.getItem("Aurthorization");
 
+showTicket();
 
 
 

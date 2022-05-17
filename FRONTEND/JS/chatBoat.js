@@ -12,7 +12,6 @@
 // console.log(fetchurl);
 import {fetchUrl} from "../JS/config.js";
 
-checkUserIssue();
 
 
 //getting the essential element from html
@@ -24,6 +23,7 @@ let chatShowArea = document.querySelector("#chatShowArea");
 
 
 
+checkUserIssue();
 
 //creating the function to user issues he raised
 function checkUserIssue()
