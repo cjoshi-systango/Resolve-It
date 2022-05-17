@@ -54,7 +54,9 @@ let fetchUrl
 import * as fetchurl from './config.js'
 setTimeout(() => {
     console.log(Object.values(fetchurl) );
-    fetchUrl = Object.values(fetchurl)
+    fetchUrl = Object.values(fetchurl);
+    //calling the function to show the all ticket
+
     showTicket();
 }, 1000);
 console.log(fetchurl);
@@ -69,7 +71,6 @@ let navCreateDepartment = document.querySelector("#nav-createDepartment");
 let aurthorizationToken = localStorage.getItem("Aurthorization");
 
 
-//calling the function to show the all ticket
 
 
 //function to show the ticket
