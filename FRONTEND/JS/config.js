@@ -8,7 +8,7 @@ let fetchUrl;
         let data = response.table;
         console.log(data[0].port);
         let port = data[0].port
-        fetchUrl = `http://resolve-it-node-js-sql.herokuapp.com:${port}/`;
+        fetchUrl = `https://resolve-it-node-js-sql.herokuapp.com:${port}/`;
     })
     .catch((e) => {
         console.error(e);
