@@ -6,7 +6,7 @@ setTimeout(() => {
     console.log(Object.values(fetchurl) );
     fetchUrl = Object.values(fetchurl)
     
-}, 100);
+}, 1000);
 console.log(fetchurl);
 //fetch url to run the port on
 // let fetchUrl = "http://localhost:4000/";

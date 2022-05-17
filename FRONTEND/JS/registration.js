@@ -48,7 +48,7 @@ setTimeout(() => {
     //calling the function which will fetch all the user type from database 
     createUsertype();
 
-}, 100);
+}, 1000);
 console.log(fetchurl);
 
 
