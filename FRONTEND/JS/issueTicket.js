@@ -56,7 +56,7 @@ setTimeout(() => {
     console.log(Object.values(fetchurl) );
     fetchUrl = Object.values(fetchurl)
     showTicket();
-}, 100);
+}, 1000);
 console.log(fetchurl);
 
 // let fetchUrl = "http://localhost:4000/";

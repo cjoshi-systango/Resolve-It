@@ -94,7 +94,7 @@ setTimeout(() => {
     console.log(Object.values(fetchurl) );
     fetchUrl = Object.values(fetchurl)
     getDepartment();
-}, 100);
+}, 1000);
 console.log(fetchurl);
 
 
