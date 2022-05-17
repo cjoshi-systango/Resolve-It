@@ -9,7 +9,7 @@ setTimeout(() => {
     //calling the function to check if user have raise any ticket 
     //and if user has raise the tickect then prepare the first question if not then prepare the first question 
     checkUserIssue();
-}, 100);
+}, 1000);
 console.log(fetchurl);
 
 

@@ -7,7 +7,7 @@ setTimeout(() => {
     console.log(Object.values(fetchurl) );
     fetchUrl = Object.values(fetchurl)
     getUserType();
-}, 100);
+}, 1000);
 console.log(fetchurl);
 
 
