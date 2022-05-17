@@ -19,8 +19,16 @@ let create = document.querySelector("#createDepartment");
 create.innerHTML = department;
 
 // fetch url to run on port
-import {fetchUrl} from "../JS/config.js";
-// let fetchUrl = "http://localhost:4000/";
+// import {fetchUrl} from "../JS/config.js";
+let fetchUrl 
+
+import * as fetchurl from './config.js'
+setTimeout(() => {
+    console.log(Object.values(fetchurl) );
+    fetchUrl = Object.values(fetchurl)
+}, 100);
+console.log(fetchurl);
+
 
 //getting the essential element from html
 let departmentName = document.querySelector("#departmentName");

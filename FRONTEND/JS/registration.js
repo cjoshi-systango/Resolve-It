@@ -38,15 +38,27 @@ registrationPage.innerHTML = register;
 let registrationWarning = document.querySelector("#registrationWarning");
 
 //fetch url to run the port on
-import {fetchUrl} from "../JS/config.js";
+// import {fetchUrl} from "../JS/config.js";
+let fetchUrl
+
+import * as fetchurl from './config.js'
+setTimeout(() => {
+    console.log(Object.values(fetchurl) );
+    fetchUrl = Object.values(fetchurl)
+    //calling the function which will fetch all the user type from database 
+    createUsertype();
+
+}, 100);
+console.log(fetchurl);
+
+
+console.log(fetchUrl);
 
 // let fetchUrl = "http://localhost:4000/";
 
 let registrationBtn =document.querySelector("#registrationBtn");
 registrationBtn.addEventListener("click",save);
 
-//calling the function which will fetch all the user type from database 
-createUsertype();
 
 // function to get all the user type from database
 function createUsertype() {

@@ -85,9 +85,18 @@ let newIssue = document.querySelector("#newissue");
 newIssue.innerHTML = body;
 
 //fetch url to run the port on
-import {fetchUrl} from "../JS/config.js";
+// import {fetchUrl} from "../JS/config.js";
+let fetchUrl 
 
-// let fetchUrl = "http://localhost:4000/";
+
+import * as fetchurl from './config.js'
+setTimeout(() => {
+    console.log(Object.values(fetchurl) );
+    fetchUrl = Object.values(fetchurl)
+    getDepartment();
+}, 100);
+console.log(fetchurl);
+
 
 //getting the essential element from html
 let departmentinputState = document.querySelector("#departmentSelect");
@@ -193,30 +202,34 @@ async function imageUpload() {
 uploadImage.addEventListener("click", imageUpload);
 
 //this will get the all department from database
-fetch(fetchUrl+"issuePortal/departmentDetails", {
-    method: "POST",
-    // body: "",
-    headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        "Aurthorization": aurthorizationToken
-    }
-}).then(async (result) => {
-    let response = await result.json();
-    let data = response.data;
-    console.log(data.length);
-    data.forEach(element => {
-        console.log(element);
-        let keys = Object.keys(element)
-        let value = Object.values(element)
-        let option = document.createElement("option");
-        option.setAttribute("value", value);
-        option.appendChild(document.createTextNode(keys));
-        department.appendChild(option);
-    });
-})
-    .catch((e) => {
-        console.error(e);
+function getDepartment()
+{
+    fetch(fetchUrl+"issuePortal/departmentDetails", {
+        method: "POST",
+        // body: "",
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "Aurthorization": aurthorizationToken
+        }
+    }).then(async (result) => {
+        let response = await result.json();
+        let data = response.data;
+        console.log(data.length);
+        data.forEach(element => {
+            console.log(element);
+            let keys = Object.keys(element)
+            let value = Object.values(element)
+            let option = document.createElement("option");
+            option.setAttribute("value", value);
+            option.appendChild(document.createTextNode(keys));
+            department.appendChild(option);
+        });
     })
+        .catch((e) => {
+            console.error(e);
+        })
+}
+
 
 //creating the first option for different select 
 let firstOption = document.createElement("option");

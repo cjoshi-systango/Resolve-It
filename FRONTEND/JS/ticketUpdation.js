@@ -1,5 +1,16 @@
 //fetch url to run the port on
-import {fetchUrl} from "../JS/config.js";
+// import {fetchUrl} from "../JS/config.js";
+let fetchUrl 
+
+import * as fetchurl from './config.js'
+setTimeout(() => {
+    console.log(Object.values(fetchurl) );
+    fetchUrl = Object.values(fetchurl)
+    getUserType();
+}, 100);
+console.log(fetchurl);
+
+
 
 // let fetchUrl = "http://localhost:4000/";
 
@@ -43,41 +54,46 @@ viewComment.addEventListener("click", seeComment);
 history.addEventListener("click", seeHistory);
 
 
-let data = {
-    user: aurthorizationToken
-}
-//this will get the user type of loged In user and will show the page according to its permissions
-fetch(fetchUrl+"ticketUpdate/getUserType", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        "Aurthorization": aurthorizationToken,
+function getUserType()
+{
+    let data = {
+        user: aurthorizationToken
     }
-}).then(async (result) => {
-    let response = await result.json();
-    let data = response.data.result;
-    let userDepartmentId = response.data.department_id;
-    console.log(userDepartmentId);
-    data.forEach(element => {
-        console.log(element);
-        if (element.read && !element.update) {
-            console.log(element.read);
-            //calling the function for the user 
-            getIssueDataForUser();
+    //this will get the user type of loged In user and will show the page according to its permissions
+    fetch(fetchUrl+"ticketUpdate/getUserType", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "Aurthorization": aurthorizationToken,
         }
-        else if (element.read && element.update && element.delete) {
-            //calling the function for admin
-            getIssueDataForAdmin(userDepartmentId);
-        }
-
-    });
-
-
-})
-    .catch((e) => {
-        console.error(e);
+    }).then(async (result) => {
+        let response = await result.json();
+        let data = response.data.result;
+        let userDepartmentId = response.data.department_id;
+        console.log(userDepartmentId);
+        data.forEach(element => {
+            console.log(element);
+            if (element.read && !element.update) {
+                console.log(element.read);
+                //calling the function for the user 
+                getIssueDataForUser();
+            }
+            else if (element.read && element.update && element.delete) {
+                //calling the function for admin
+                getIssueDataForAdmin(userDepartmentId);
+            }
+    
+        });
+    
+    
     })
+        .catch((e) => {
+            console.error(e);
+        })
+}
+
+
 
 //function to add comment on issue
 function addcomment() {

@@ -1,5 +1,13 @@
-import {fetchUrl} from "../JS/config.js";
+let fetchUrl 
 
+
+import * as fetchurl from './config.js'
+setTimeout(() => {
+    console.log(Object.values(fetchurl) );
+    fetchUrl = Object.values(fetchurl)
+    
+}, 100);
+console.log(fetchurl);
 //fetch url to run the port on
 // let fetchUrl = "http://localhost:4000/";
 
@@ -16,6 +24,7 @@ login.addEventListener("click",logIn);
 //function to check the user login credentials and if find ok log in the user
 function logIn(e)
 {
+    console.log(fetchUrl);
     e.preventDefault()
     email = document.querySelector("#InputEmail1").value;
     password = document.querySelector("#InputPassword1").value;
