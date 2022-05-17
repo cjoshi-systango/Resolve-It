@@ -9,7 +9,6 @@ import {fetchUrl} from "../JS/config.js";
 // }, 1000);
 // console.log(fetchurl);
 
-    getUserType();
 
 
 // let fetchUrl = "http://localhost:4000/";
@@ -53,6 +52,7 @@ comments.addEventListener("click", addcomment)
 viewComment.addEventListener("click", seeComment);
 history.addEventListener("click", seeHistory);
 
+getUserType();
 
 function getUserType()
 {

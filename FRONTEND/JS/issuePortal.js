@@ -96,7 +96,6 @@ import {fetchUrl} from "../JS/config.js";
 // }, 1000);
 // console.log(fetchurl);
 
-getDepartment();
 
 //getting the essential element from html
 let departmentinputState = document.querySelector("#departmentSelect");
@@ -197,6 +196,7 @@ async function imageUpload() {
 
 }
 
+getDepartment();
 
 // adding the event listener on the upload button 
 uploadImage.addEventListener("click", imageUpload);
