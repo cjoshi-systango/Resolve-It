@@ -5,7 +5,7 @@ rel="stylesheet"
 id="bootstrap-css"
 />
 <br><br><br><br><br><br><br><br>
-<div class="log-form" style="top: 20%; ">
+<div class="log-form" id="registrationForm" style="top: 20%; ">
   <h2 style="font-weight:bold;  text-align:center; background-color: #7b97ea; color:white; ">Registration</h2>
   <form>
   <input type="text" id="userFnameInp" title="name" placeholder="Enter Name"  style="height:7%; border:1px solid grey;  border-radius:10px;"  required/>
@@ -33,31 +33,29 @@ id="bootstrap-css"
 let registrationPage = document.querySelector("#register");
 registrationPage.innerHTML = register;
 
+//fetch url to run the port on
+import {fetchUrl} from "../JS/config.js";
 
 
 let registrationWarning = document.querySelector("#registrationWarning");
-
-//fetch url to run the port on
-import {fetchUrl} from "../JS/config.js";
-// let fetchUrl
-
-// import * as fetchurl from './config.js'
-// setTimeout(() => {
-//     console.log(Object.values(fetchurl) );
-//     fetchUrl = Object.values(fetchurl)
-//     //calling the function which will fetch all the user type from database 
-
-// }, 1000);
-// console.log(fetchurl);
+let registrationForm = document.querySelector("#registrationForm");
 
 createUsertype();
 
 console.log(fetchUrl);
 
-// let fetchUrl = "http://localhost:4000/";
-
 let registrationBtn =document.querySelector("#registrationBtn");
 registrationBtn.addEventListener("click",save);
+registrationForm.addEventListener("click",removeWarning);
+
+function removeWarning()
+{
+    setTimeout(() => {
+        registrationWarning.style.display = "none";
+        
+    }, 2000);
+
+}
 
 
 // function to get all the user type from database
@@ -169,7 +167,8 @@ function save(e) {
             let response = await result.json();
             let data = response.data;
             if (data == "register") {
-                alert("registerd");
+                registrationWarning.innerHTML = "registerd"
+                registrationWarning.style.display = "block"
                 Email.send({
                     Host: "smtp.gmail.com",
                     Username: "resolveItt@gmail.com",
@@ -179,14 +178,15 @@ function save(e) {
                     Subject: "User Credentials",
                     Body: "Here are your credentials of resolveIt" + password,
                 }).then(
-                    message => alert("mail sent successfully")
+                    message => console.log("mail sent successfully")
             
                 )
-                    .catch(error => alert(error));
+                    .catch(error => console.log(error));
                 
             }
             else if (data == "alreadyExist") {
-                alert("User email already exist");
+                registrationWarning.innerHTML = "User email already exist";
+                registrationWarning.style.display = "block";
             }
             // console.log(result.json());
         })

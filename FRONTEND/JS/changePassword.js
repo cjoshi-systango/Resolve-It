@@ -16,6 +16,7 @@ import {fetchUrl} from "../JS/config.js";
 //declration of valriables 
 let oldPassword,newPassword 
 let changePasswordBtn = document.querySelector("#changePassword");
+let changePasswordWarning = document.querySelector("#changePasswordWarning");
 
 //getting authorization token from local storage for auth/middware
 let aurthorizationToken = localStorage.getItem("Aurthorization")
@@ -51,7 +52,21 @@ function changePassword(e)
     }).then(async (result) => {
         let response = await result.json();
         let data = response.data;
-        if(data == "changed") alert("changed");
+        if(data == "changed")
+        {
+            changePasswordWarning.innerHTML = "Changed Sucessfully";
+            changePasswordWarning.style.display = "block"; 
+        }
+        else if(data == "passwordWrong")
+        {
+            changePasswordWarning.innerHTML = "Password is wrong"
+            changePasswordWarning.style.display = "block";   
+        }
+        else if(data == "error")
+        {
+            changePasswordWarning.innerHTML = "Some Error Occured";
+            changePasswordWarning.style.display = "block"; 
+        }
     })
         .catch((e) => {
             console.error(e);

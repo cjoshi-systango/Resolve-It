@@ -206,6 +206,7 @@ function storeIssueData(Subject, Decription, Department, Status, Priority, Creat
                 connection.query(queryToInsertIssueData, (err, result) => {
                     if (err) {
                         console.log(err);
+                        res.status(200).json({ success: true, data: "error" });
                     }
                     else {
                         console.log("data stored");

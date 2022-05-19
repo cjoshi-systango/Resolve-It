@@ -4,16 +4,18 @@ href="../CSS/issueTicket.css"
 rel="stylesheet"
 id="bootstrap-css"/>
 <h4 style="font-weight:bold">Issue</h4>
+<div id="sortBy">
+    <label>Sort By :</label><select name="filter" id="filter" >
+    <option value="all">All</option>
+    <option value="new">New</option>
+    <option value="closed">Closed</option>
+    <option value="pending">Pending</option>
+    <option value="high">High</option>
+    <option value="medium">Medium</option>
+    <option value="low">Low</option>
+    </select>
+</div>
 
-<label>Sort By :</label><select name="filter" id="filter" >
-<option value="all">All</option>
-<option value="new">New</option>
-<option value="closed">Closed</option>
-<option value="pending">Pending</option>
-<option value="high">High</option>
-<option value="medium">Medium</option>
-<option value="low">Low</option>
-</select>
 
 <div class="mx-5">
 
@@ -98,24 +100,37 @@ function showTicket() {
             let createdBy = document.createElement("td");
             let department = document.createElement("td");
 
+            
+            let priorityButton = document.createElement("button");
+            priorityButton.setAttribute("class","priorityButton");
 
-            let id = document.createElement("a");
+            let createdByButton = document.createElement("button");
+            createdByButton.setAttribute("class","createdByButton");
 
+            let assignedToButton = document.createElement("button");
+            assignedToButton.setAttribute("class","assignedToButton");
 
+            let bgColor = "#" + ("00000" + Math.floor(Math.random() * Math.pow(16, 6)).toString(16)).slice(-6);
+            let bgColor1 = "#" + ("00000" + Math.floor(Math.random() * Math.pow(16, 6)).toString(16)).slice(-6);
+            createdByButton.style.backgroundColor = bgColor;
+            assignedToButton.style.backgroundColor = bgColor1;
+            ticket.style.height = "60";
 
+            subject.setAttribute("class","subject");
 
+            let id = document.createElement("td");
 
             id.innerHTML = element.id;
             subject.innerHTML = element.subject;
             department.innerHTML = element.department_name;
             status.innerHTML = element.status_title;
-            priority.innerHTML = element.priority_title;
-            assignee.innerHTML = element.assigned_to;
-            createdBy.innerHTML = element.created_by;
+            priorityButton.innerHTML = element.priority_title;
+            assignedToButton.innerHTML = element.assigned_to.charAt(0);
+            createdByButton.innerHTML = element.created_by.charAt(0) ;
 
-            if (priority.innerHTML == "high") priority.style.color = "red";
-            if (priority.innerHTML == "medium") priority.style.color = "rgb(255,69,0)";
-            if (priority.innerHTML == "low") priority.style.color = "orange";
+            if (priorityButton.innerHTML == "high") priorityButton.style.backgroundColor = "red";
+            if (priorityButton.innerHTML == "medium") priorityButton.style.backgroundColor = "rgb(255,69,0)";
+            if (priorityButton.innerHTML == "low") priorityButton.style.backgroundColor = "orange";
             ticket.addEventListener("click", ticketUpdate)
             function ticketUpdate() {
                 console.log("tr");
@@ -123,7 +138,9 @@ function showTicket() {
             }
             // id.href = 
             // id.value = id.innerHTML;
-
+            createdBy.appendChild(createdByButton);
+            priority.appendChild(priorityButton);
+            assignee.appendChild(assignedToButton);
             ticket.appendChild(id);
             ticket.appendChild(subject);
             ticket.appendChild(department);
@@ -139,7 +156,7 @@ function showTicket() {
             filter.addEventListener("change", addFilter)
             
             
-            //function to show ticket according to the filter
+
             function addFilter()
             {
                 filter = document.querySelector("#filter").value;
@@ -161,17 +178,17 @@ function showTicket() {
                 else if (filter == "high") {
                     tableBody.appendChild(ticket);
                     tableBody.removeChild(ticket);
-                    if (priority.innerHTML == "high") tableBody.appendChild(ticket);;
+                    if (priorityButton.innerHTML == "high") tableBody.appendChild(ticket);;
                 }
                 else if (filter == "medium") {
                     tableBody.appendChild(ticket);
                     tableBody.removeChild(ticket);
-                    if (priority.innerHTML == "medium") tableBody.appendChild(ticket);;
+                    if (priorityButton.innerHTML == "medium") tableBody.appendChild(ticket);;
                 }
                 else if (filter == "low") {
                     tableBody.appendChild(ticket);
                     tableBody.removeChild(ticket);
-                    if (priority.innerHTML == "low") tableBody.appendChild(ticket);;
+                    if (priorityButton.innerHTML == "low") tableBody.appendChild(ticket);;
                 }
                 else if (filter == "all") {
                     tableBody.appendChild(ticket);

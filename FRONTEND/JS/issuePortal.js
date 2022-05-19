@@ -12,7 +12,7 @@ id="bootstrap-css"
 </select>
 
 <div id="registration_formmm" class="hide" style="position: relative;"> 
-    <div class="log-form" style="position: absolute; top: 50%; right: 50%; transform: translate(-50%,0%);">
+    <div class="log-form" id="issuePortalForm" style="position: absolute; top: 50%; right: 50%; transform: translate(-50%,0%);">
         <h2 style="font-weight:bold;  text-align:center; background-color: #7b97ea; color:white; ">New Issue</h2>
 
             
@@ -69,6 +69,7 @@ id="bootstrap-css"
                         </div>
 
                 </div>
+                <small id="issuePortalWarning" style="color:red; font-weight:600; display:none"> warning text here <!--Dynamic content here--> </small>
                 
                 <button id="createIssueBtn" class="btn" style="background-color: #7b97ea; color:white; text-align:center; margin-left:40%">Submit</button>
         
@@ -86,16 +87,6 @@ newIssue.innerHTML = body;
 
 //fetch url to run the port on
 import {fetchUrl} from "../JS/config.js";
-// let fetchUrl 
-
-
-// import * as fetchurl from './config.js'
-// setTimeout(() => {
-//     console.log(Object.values(fetchurl) );
-//     fetchUrl = Object.values(fetchurl)
-// }, 1000);
-// console.log(fetchurl);
-
 
 //getting the essential element from html
 let departmentinputState = document.querySelector("#departmentSelect");
@@ -117,12 +108,13 @@ let uploadImage = document.querySelector("#UploadImage");
 let selectImageInp = document.querySelector("#selectfileInp");
 let imageName =""
 let imageExtension =""
+let issuePortalWarning = document.querySelector("#issuePortalWarning");
+let issuePortalForm = document.querySelector("#issuePortalForm");
 
 
 //getting the token from the local storage for authorization
 let aurthorizationToken = localStorage.getItem("Aurthorization");
 
-// // console.log(de);
 
 //getting the image file after selecting
 selectImageInp.onchange = e => {
@@ -194,6 +186,15 @@ async function imageUpload() {
     });
 
 
+}
+
+issuePortalForm.addEventListener("click",removeWarning)
+
+function removeWarning()
+{
+    setTimeout(() => {
+        issuePortalWarning.style.display = "none";
+    }, 2000);
 }
 
 getDepartment();
@@ -369,10 +370,22 @@ function storeTicketData() {
     issuePriority = document.querySelector("#PriorityInp").value;
     issueAssignTo = document.querySelector("#AssigneeInp").value;
 
-    if (subject == "") alert("Subject can not null");
-    else if (issueStatus == "") alert("Must Select Status");
-    else if (issuePriority == "") alert("Must Select Priority");
-    else if (issueAssignTo == "") alert("Must Select Priority");
+    if (subject == "") {
+        issuePortalWarning.innerHTML = "Subject can not null"; 
+        issuePortalWarning.style.display = "block";
+    }
+    else if (issueStatus == ""){
+        issuePortalWarning.innerHTML = "Must Select Status"; 
+        issuePortalWarning.style.display = "block";
+    } 
+    else if (issuePriority == "") {
+        issuePortalWarning.innerHTML = "Must Select Priority"; 
+        issuePortalWarning.style.display = "block";
+    }
+    else if (issueAssignTo == ""){
+        issuePortalWarning.innerHTML = "Must Assign Issue To Someone"; 
+        issuePortalWarning.style.display = "block";
+    }
     else if (issueDescription == "") issueDescription = "-";
     else if (url == undefined) url = "";
     else {
@@ -411,8 +424,9 @@ function storeTicketData() {
                     button: "Aww yiss!",
                   });
             }
-            else if (data == "alreadyExist") {
-                alert("User email already exist");
+            else if (data == "error") {
+                issuePortalWarning.innerHTML = "Someting Went Wrong Please Try Again"; 
+                issuePortalWarning.style.display = "block";
             }
             // console.log(result.json());
         })

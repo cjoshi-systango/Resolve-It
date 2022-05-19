@@ -63,5 +63,55 @@
 
 
   }
+  .priorityButton
+  {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    color: white;
+    background-color: white;
+    border: none;
+    width: 60%;
+    border-radius: 5px;
+  }
   
+  #customers tr
+  {
+    padding-top: 120px;
+  }
+  .createdByButton
+  {
+    border: none;
+    background-color: lightseagreen;
+    color: white;
+    border-radius: 50%;
+    /* width: 20%;
+    height: 20%; */
+  }
+  .assignedToButton
+  {
+    border: none;
+    background-color: lightseagreen;
+    color: white;
+    border-radius: 50%;
+    /* width: 20%;
+    height: 20%; */
+  }
+  
+  #customers thead tr:first-child th:last-child{ border-top-right-radius: 10px; }
+  #customers thead tr:first-child th:first-child{ border-top-left-radius: 10px; }
+  
+  .subject
+  {
+    font-weight: bold;
+  }
+  #sortBy{
+    padding-left: 4%;
+    padding-bottom: 2%;
+    padding-top: 2%;
+  }
+  
+  #sortBy select:hover{
+    cursor: pointer;
+  }
+
 /* tr:hover {background-color: coral;} */
