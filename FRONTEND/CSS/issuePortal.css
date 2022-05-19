@@ -202,5 +202,9 @@
 }
 #departmentSelect
 {
-    all: initial;
+  max-width: 10%;
+  max-height: 7%;
+  background-color: white;
+  padding: 0%;
+  margin-left: 1%;
 }

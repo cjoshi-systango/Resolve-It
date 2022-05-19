@@ -9,7 +9,7 @@ let department = `
                 <input id="departmentName" placeholder="Enter Department Name" style="border:1px solid grey; border-radius:5px; padding: 5px;"><br>
                 <small id="departmentNameWarning" style="color:red; font-weight:600; display:none"> warning text here <!--Dynamic content here--> </small>
             </div>    
-            <button id="createDepartmentBtn" style="background: #7b97ea; color: white; border: 0px solid transparent; border-radius: 5px; padding-left: 20px; padding-right: 20px;">Create</button>    
+            <button id="createDepartmentBtn" style="background: #7b97ea; color: white; border: 0px solid transparent; border-radius: 5px; padding-left: 20px; padding-right: 20px;margin-top:5%">Create</button>    
         </form>
     </div>
 </center>

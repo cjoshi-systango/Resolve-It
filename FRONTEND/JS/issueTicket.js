@@ -17,24 +17,26 @@ id="bootstrap-css"/>
 
 
 <div class="mx-5">
+<div style="border: 5px solid #7b97ea; border-radius:5px;" >
+    <table id="customers" >
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Subject</th>
+        <th>Department</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>Assign To</th>
+        <th>Created By</th>
+    </tr>
+    </thead>
+    <tbody id="tableBody">
+                            
+    </tbody>
 
-<table id="customers" >
-<thead>
-  <tr>
-    <th>Id</th>
-    <th>Subject</th>
-    <th>Department</th>
-    <th>Status</th>
-    <th>Priority</th>
-    <th>Assign To</th>
-    <th>Created By</th>
-  </tr>
-</thead>
-<tbody id="tableBody">
-                        
-</tbody>
+    </table>
+</div>
 
-</table>
 </div>
 
 <div id="chatContainer">
@@ -126,8 +128,8 @@ function showTicket() {
             department.innerHTML = element.department_name;
             status.innerHTML = element.status_title;
             priorityButton.innerHTML = element.priority_title;
-            assignedToButton.innerHTML = element.assigned_to.charAt(0);
-            createdByButton.innerHTML = element.created_by.charAt(0) ;
+            assignedToButton.innerHTML = element.assigned_to.substring(0,2);
+            createdByButton.innerHTML = element.created_by.substring(0,2) ;
 
             if (priorityButton.innerHTML == "high") priorityButton.style.backgroundColor = "red";
             if (priorityButton.innerHTML == "medium") priorityButton.style.backgroundColor = "rgb(255,69,0)";

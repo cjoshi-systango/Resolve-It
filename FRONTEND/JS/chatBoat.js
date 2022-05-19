@@ -20,7 +20,7 @@ let aurthorizationToken = localStorage.getItem("Aurthorization")
 let userResponse = document.querySelector("#userResponse");
 let questionDiv = document.querySelector("#question");
 let chatShowArea = document.querySelector("#chatShowArea");
-
+let optionDivv
 
 
 checkUserIssue();
@@ -97,7 +97,7 @@ function firstQuestionForIssue()
         //     span.setAttribute("id",)
         // }
         data[1].forEach(element => {
-            let optionDivv = document.createElement("div");
+            optionDivv = document.createElement("div");
             let span = document.createElement("p");
             span.setAttribute("class", "spans");
             span.setAttribute("id", element.id);
@@ -112,7 +112,7 @@ function firstQuestionForIssue()
                 responseByUser.innerHTML = span.innerHTML;
                 reponseDiv.appendChild(responseByUser);
                 chatShowArea.appendChild(reponseDiv);
-                systemResponse.remove();
+                optionDivv.remove();
                 nextQuestion(element.id,10)
             };
             systemResponse.appendChild(optionDivv)
@@ -160,7 +160,7 @@ function firstQuestion() {
         //     span.setAttribute("id",)
         // }
         data[1].forEach(element => {
-            let optionDivv = document.createElement("div");
+            optionDivv = document.createElement("div");
             let span = document.createElement("p");
             span.setAttribute("class", "spans");
             span.setAttribute("id", element.id);
@@ -175,7 +175,7 @@ function firstQuestion() {
                 responseByUser.innerHTML = span.innerHTML;
                 reponseDiv.appendChild(responseByUser);
                 chatShowArea.appendChild(reponseDiv);
-                systemResponse.remove();
+                optionDivv.remove();
                 nextQuestion(element.id,1);
             };
             systemResponse.appendChild(optionDivv)
@@ -238,7 +238,7 @@ function nextQuestion(idd,qId) {
             });
 
             data[1].forEach(element => {
-                let optionDivv = document.createElement("div")
+                optionDivv = document.createElement("div")
                 let span = document.createElement("p");
                 span.setAttribute("class", "spans");
                 span.setAttribute("id", element.id);
@@ -253,7 +253,7 @@ function nextQuestion(idd,qId) {
                     responseByUser.innerHTML = span.innerHTML;
                     reponseDiv.appendChild(responseByUser);
                     chatShowArea.appendChild(reponseDiv);
-                    systemResponse.remove();
+                    optionDivv.remove();
                     // while (chatShowArea.firstChild) {
                     //     chatShowArea.removeChild(chatShowArea.firstChild);
                     // }

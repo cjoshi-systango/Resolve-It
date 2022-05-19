@@ -234,6 +234,7 @@ function seeHistory() {
 function getIssueDataForAdmin(userDepartmentId) {
     let label = document.createElement("label");
     let status = document.createElement("select");
+    status.style.marginLeft = "2%";
     let oldStatus;
 
     // console.log(element.update);
