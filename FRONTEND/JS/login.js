@@ -1,26 +1,26 @@
-// let fetchUrl 
-import {fetchUrl} from "../JS/config.js";
-
-
-// import * as fetchurl from './config.js'
-// setTimeout(() => {
-//     console.log(Object.values(fetchurl) );
-//     fetchUrl = Object.values(fetchurl)
-    
-// }, 1000);
-// console.log(fetchurl);
 //fetch url to run the port on
-// let fetchUrl = "http://localhost:4000/";
+import {fetchUrl} from "../JS/config.js";
 
 //getting and declaring the required variable
 let login = document.querySelector("#login");
 let email,password;
 let loginNameWarning = document.querySelector("#loginNameWarning");
+let loginForm = document.querySelector("#loginForm");
+
+
+
+
 
 //adding the event listener on log in btn
 login.addEventListener("click",logIn);
+loginForm.addEventListener("click" ,removeWarning)
 
-// localStorage.setItem("Aurthorization","");
+function removeWarning()
+{
+    setTimeout(() => {
+    loginNameWarning.style.display = "none";
+    }, 2000);
+}
 
 //function to check the user login credentials and if find ok log in the user
 function logIn(e)
@@ -59,12 +59,15 @@ function logIn(e)
             if (data.user == email) {
                 console.log(data.token);
                 localStorage.setItem("Aurthorization",data.token);
-                alert("userExist");
+                loginNameWarning.innerHTML = "Welcome!!";
+                loginNameWarning.style.display = "block";
+
                 location.href = "HTML/index.html"
             }
             else if(data == "noUserFound")
             {
-                alert("User email or passwor is wrong");
+                loginNameWarning.innerHTML = "User email or password is wrong";
+                loginNameWarning.style.display = "block";
             }
             console.log(result.json());
         })

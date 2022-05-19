@@ -17,6 +17,8 @@ function changePassword(req,res,oldPassword,newPassword,user)
             if(err)
             {
                 console.log(err);
+                res.status(400).json({ success: false, data: "error" });
+
             }
             else
             {
@@ -34,6 +36,8 @@ function changePassword(req,res,oldPassword,newPassword,user)
         if(err)
         {
             console.log(err);
+            res.status(400).json({ success: false, data: err });
+
         }
         else if(result.length > 0)
         {
@@ -45,7 +49,10 @@ function changePassword(req,res,oldPassword,newPassword,user)
                 {
                     updatePassword();
                 }
-                
+                else{
+                    res.status(400).json({ success: false, data: "passwordWrong" });
+
+                }
             });
 
 
