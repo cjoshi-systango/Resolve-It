@@ -9,6 +9,8 @@ function storeDepartmentDetails(req,res,Name)
         if(err)
         {
             console.log(err);
+            res.status(400).json({ success: false, data: err });
+
 
         }
         else

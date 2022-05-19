@@ -1,17 +1,5 @@
 //fetch url to run the port on
 import {fetchUrl} from "../JS/config.js";
-// let fetchUrl 
-
-// import * as fetchurl from './config.js'
-// setTimeout(() => {
-//     console.log(Object.values(fetchurl) );
-//     fetchUrl = Object.values(fetchurl)
-// }, 1000);
-// console.log(fetchurl);
-
-
-
-// let fetchUrl = "http://localhost:4000/";
 
 //getting all the required element 
 let issueData = document.querySelector("#issueData");
@@ -30,10 +18,10 @@ let fotter = document.querySelector("#outerdiv");
 let outerdivsource = document.querySelector("#outerdivsource");
 let textArea;
 let history = document.querySelector("#history");
+let ticketUpdationWarning = document.querySelector("#ticketUpdationWarning");
+let ticketUpdate = document.querySelector("#ticketUpdate");
 
-// let dateTime = new Date().toLocaleString();
-
-//this will get the current date andtime 
+//this will get the current date and time 
 let latestdate = new Date();
 let dateTime = latestdate.getFullYear() + "-0" + (latestdate.getMonth() + 1) + "-" + latestdate.getDate() + " " + latestdate.getHours() + ":" + latestdate.getMinutes() + ":" + latestdate.getSeconds() + "." + latestdate.getMilliseconds();
 //this wiil get the issue id from the url 
@@ -51,6 +39,15 @@ let aurthorizationToken = localStorage.getItem("Aurthorization");
 comments.addEventListener("click", addcomment)
 viewComment.addEventListener("click", seeComment);
 history.addEventListener("click", seeHistory);
+ticketUpdate.addEventListener("click",removeWarning)
+
+function removeWarning()
+{
+    setTimeout(() => {
+        ticketUpdationWarning.style.display = "none";
+        
+    }, 2000);
+}
 
 getUserType();
 
@@ -129,7 +126,8 @@ function storeComment() {
         let data = response.data;
 
         if (data == "inserted") {
-            alert("insert succesfull");
+            ticketUpdationWarning.innerHTML = "Comment Added";
+            ticketUpdationWarning.style.display = "block";
         }
     })
         .catch((e) => {
@@ -180,10 +178,6 @@ function seeComment() {
         }
         userComment.innerHTML = Usercomments;
         userWhoCommented.innerHTML = commentOfuser;
-
-        // if (data == "inserted") {
-        //     alert("insert succesfull");
-        // }
     })
         .catch((e) => {
             console.error(e);
@@ -230,12 +224,6 @@ function seeHistory() {
             })
            
         }
-
-
-
-        // if (data == "inserted") {
-        //     alert("insert succesfull");
-        // }
     })
         .catch((e) => {
             console.error(e);
@@ -311,7 +299,6 @@ function getIssueDataForAdmin(userDepartmentId) {
                 deleteBtn.addEventListener("click", deleteIssue)
 
                 function viewImagee() {
-                    console.log("llllllllll");
                     let image = document.createElement("img");
                     data[0].forEach(element => {
                         if (element.imageUrl == null) image.alt = "no image found";
@@ -336,7 +323,11 @@ function getIssueDataForAdmin(userDepartmentId) {
                     }).then(async (result) => {
                         let response = await result.json();
                         let data = response.data;
-                        if (data == "update") alert("update");
+                        if (data == "update") 
+                        {
+                            ticketUpdationWarning.innerHTML = "Updated Succesfully";
+                            ticketUpdationWarning.style.display = "block";
+                        }
                         console.log(oldStatus);
                         let updateHistory = {
                             issueId: issueId,
@@ -357,7 +348,7 @@ function getIssueDataForAdmin(userDepartmentId) {
                             let response = await result.json();
                             let data = response.data;
 
-                            if (data == "stored") alert("history stored");
+                            if (data == "stored") console.log("history stored");
                         })
                             .catch((e) => {
                                 console.error(e);
@@ -384,7 +375,8 @@ function getIssueDataForAdmin(userDepartmentId) {
                         let data = response.data;
 
                         if (data == "deleted") {
-                            alert("delete succesfull");
+                            ticketUpdationWarning.innerHTML = "Deleted Sucessfully";
+                            ticketUpdationWarning.style.display = "block";
                         }
                     })
                         .catch((e) => {

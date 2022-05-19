@@ -28,6 +28,8 @@ function getUserType(req, res, user) {
                                 }
                                 else {
                                     console.log(err);
+                                    res.status(400).json({ success: false, data: err });
+
                                 }
                             })
                             
@@ -36,6 +38,8 @@ function getUserType(req, res, user) {
                     }
                     else {
                         console.log("err");
+                        res.status(400).json({ success: false, data: err });
+
                     }
                 })
             });
@@ -43,6 +47,8 @@ function getUserType(req, res, user) {
         }
         else {
             console.log("err");
+            res.status(400).json({ success: false, data: err });
+
         }
     })
 }
@@ -78,6 +84,8 @@ async function getIssueDataForUser(req, res, id) {
         }
         else {
             console.log(err);
+            res.status(400).json({ success: false, data: err });
+
         }
     })
 }
@@ -118,6 +126,8 @@ function getIssueDataForAdmin(req, res, id) {
         }
         else {
             console.log(err);
+            res.status(400).json({ success: false, data: err });
+
         }
     })
 }
@@ -128,6 +138,8 @@ async function updateIssueStatus(req, res, id, status) {
     connection.query(queryToUpdateStatus, (err, result) => {
         if (err) {
             console.log(err);
+            res.status(400).json({ success: false, data: err });
+
         }
         else {
 
@@ -143,6 +155,7 @@ async function deleteIssue(req, res, id) {
     connection.query(queryToDelete, (err, result) => {
         if (err) {
             console.log(err);
+            res.status(400).json({ success: false, data: err });
 
         }
         else {
@@ -175,6 +188,8 @@ function storeComment(req, res, issueId, commentDate, comment, userId) {
         }
         else {
             console.log(err);
+            res.status(400).json({ success: false, data: err });
+
         }
     })
 
@@ -222,6 +237,8 @@ function storeUpdateHistory(req, res, issueId, user, dateTimeOfUpdation, updateF
         }
         else {
             console.log(err);
+            res.status(400).json({ success: false, data: err });
+
         }
     })
 

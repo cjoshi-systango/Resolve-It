@@ -17,6 +17,8 @@ function getStarted(req, res) {
         }
         else {
             console.log(err);
+            res.status(400).json({ success: false, data: err });
+
         }
     })
 
@@ -34,6 +36,8 @@ function nextQuestion(req, res, optionId, qId, user,dateTime) {
     connection.query(queryToCheckDyanamicOption, (err, result) => {
         if (err) {
             console.log(err);
+            res.status(400).json({ success: false, data: err });
+
         }
         else if (result.length > 0) {
             result.forEach(element => {
@@ -55,6 +59,8 @@ function nextQuestion(req, res, optionId, qId, user,dateTime) {
         connection.query(queryToGetNextQuestion, (err, result) => {
             if (err) {
                 console.log(err)
+                res.status(400).json({ success: false, data: err });
+
             }
             else if (result.length > 0) {
                 console.log(result);
@@ -65,6 +71,8 @@ function nextQuestion(req, res, optionId, qId, user,dateTime) {
                         if(err)
                         {
                             console.log(err)
+                            res.status(400).json({ success: false, data: err });
+
 
                         }
                         else if(result.length > 0)
@@ -109,6 +117,8 @@ function nextQuestion(req, res, optionId, qId, user,dateTime) {
             }
             else {
                 console.log(err);
+                res.status(400).json({ success: false, data: err });
+
             }
             // console.log(questionOptionArray + "pppppppppppppppppppppppp");
 
@@ -157,6 +167,8 @@ function nextQuestion(req, res, optionId, qId, user,dateTime) {
         connection.query(queryToGetUser, (err, result) => {
             if (err) {
                 console.log(err);
+                res.status(400).json({ success: false, data: err });
+
             }
             else if (result.length > 0) {
                 result.forEach(element => {
@@ -166,6 +178,8 @@ function nextQuestion(req, res, optionId, qId, user,dateTime) {
                     connection.query(queryToCheckIssue, (err, result) => {
                         if (err) {
                             console.log(err);
+                            res.status(400).json({ success: false, data: err });
+
                         }
                         else if (result.length > 0) {
                             console.log(result);
@@ -195,6 +209,8 @@ function storeHistory(optionId,qId,user,dateTime)
         if(err)
         {
             console.log(err);
+            res.status(400).json({ success: false, data: err });
+
         }
         else if(result.length > 0)
         {
@@ -204,6 +220,8 @@ function storeHistory(optionId,qId,user,dateTime)
                 connection.query(queryToStoreHistory,(err,result)=>{
                     if (err) {
                         console.log(err);
+                        res.status(400).json({ success: false, data: err });
+
                     }
                     else{
                         console.log("inserted history of not dynamic");
@@ -233,6 +251,8 @@ function storeHistoryForDynamic(optionId,qId,user,dateTime)
                 connection.query(queryToStoreHistory,(err,result)=>{
                     if (err) {
                         console.log(err);
+                        res.status(400).json({ success: false, data: err });
+
                     }
                     else{
                         console.log("inserted history of dynamic");
@@ -263,6 +283,8 @@ function checkUserIssue(req, res, id) {
                     console.log(result);
                     if (err) {
                         console.log(err);
+                        res.status(400).json({ success: false, data: err });
+
                     }
                     else if (result.length > 0) {
                         console.log(result);
@@ -295,6 +317,8 @@ function getStartedForIssue(req, res) {
         }
         else {
             console.log(err);
+            res.status(400).json({ success: false, data: err });
+
         }
     })
 }

@@ -49,6 +49,8 @@ async function showTicket(req, res) {
                             else
                             {
                                 console.log("errrrr");
+                                res.status(400).json({ success: false, data: err });
+
                             }
                         })
                     });
@@ -56,6 +58,8 @@ async function showTicket(req, res) {
                 else
                 {
                     console.log(err);
+                    res.status(400).json({ success: false, data: err });
+
                 }
             })
             
@@ -66,6 +70,8 @@ async function showTicket(req, res) {
         }
         else {
             console.log("err");
+            res.status(400).json({ success: false, data: err });
+
         }
     })
 }
