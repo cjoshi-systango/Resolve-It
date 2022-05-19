@@ -1,5 +1,6 @@
 const connection = require("../database/database_connection");
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
 
 function storeUserData(Name,Email,Usertype,Password,Department,req,res)
 {
@@ -42,6 +43,29 @@ function storeUserData(Name,Email,Usertype,Password,Department,req,res)
                                         else
                                         {
                                             console.log("data stored");
+
+                                            let transporter = nodemailer.createTransport({
+                                                service: 'gmail',
+                                                auth: {
+                                                  user: "resolveItt@gmail.com",
+                                                  pass: "resolveIt@13",
+                                                }
+                                              });
+                                              
+                                                let mailOptions = {
+                                                from: 'resolveItt@gmail.com',
+                                                to: Email,
+                                                subject: "User Credentials",
+                                                text: "Here are your credentials of resolveIt" + Password,
+                                                };
+                                              
+                                                transporter.sendMail(mailOptions, function(error, info){
+                                                if (error) {
+                                                    console.log(error);
+                                                } else {
+                                                    console.log('Email sent: ' + info.response);
+                                                }
+                                            });
                                             res.status(200).json({success:true , data : "register" });
                                         }
                                     })

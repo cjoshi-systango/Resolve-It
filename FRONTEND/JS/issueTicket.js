@@ -3,9 +3,8 @@ var body = `
 href="../CSS/issueTicket.css"
 rel="stylesheet"
 id="bootstrap-css"/>
-<h4 style="font-weight:bold">Issue</h4>
 <div id="sortBy">
-    <label>Sort By :</label><select name="filter" id="filter" >
+    <label style="font-weight: bold;">Sort By :</label><select name="filter" id="filter" >
     <option value="all">All</option>
     <option value="new">New</option>
     <option value="closed">Closed</option>
