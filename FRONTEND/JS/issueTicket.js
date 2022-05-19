@@ -3,9 +3,8 @@ var body = `
 href="../CSS/issueTicket.css"
 rel="stylesheet"
 id="bootstrap-css"/>
-<h4 style="font-weight:bold">Issue</h4>
 <div id="sortBy">
-    <label>Sort By :</label><select name="filter" id="filter" >
+    <label style="font-weight: bold;">Sort By :</label><select name="filter" id="filter" >
     <option value="all">All</option>
     <option value="new">New</option>
     <option value="closed">Closed</option>
@@ -93,6 +92,8 @@ function showTicket() {
         data[0].forEach(element => {
             let ticket = document.createElement("tr");
             ticket.setAttribute("id", "ticket");
+
+            ticket.style.maxHeight = "15%"
             let subject = document.createElement("td");
             let priority = document.createElement("td");
             let assignee = document.createElement("td");

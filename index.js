@@ -46,6 +46,7 @@ server.listen(PORT,()=>{
     console.log("Server listen "+PORT);
 
 })
+
 app.use(bodyParser.json());
  
 const registerRouter = require("./BACKEND/routes/register")
