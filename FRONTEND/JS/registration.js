@@ -169,20 +169,6 @@ function save(e) {
             if (data == "register") {
                 registrationWarning.innerHTML = "registerd"
                 registrationWarning.style.display = "block"
-                Email.send({
-                    Host: "smtp.gmail.com",
-                    Username: "resolveItt@gmail.com",
-                    Password: "resolveIt@13",
-                    To: email,
-                    From: "resolveItt@gmail.com",
-                    Subject: "User Credentials",
-                    Body: "Here are your credentials of resolveIt" + password,
-                }).then(
-                    message => console.log("mail sent successfully")
-            
-                )
-                    .catch(error => console.log(error));
-                
             }
             else if (data == "alreadyExist") {
                 registrationWarning.innerHTML = "User email already exist";
