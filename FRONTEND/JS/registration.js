@@ -5,11 +5,11 @@ rel="stylesheet"
 id="bootstrap-css"
 />
 <br><br><br><br><br><br><br><br>
-<div class="log-form" id="registrationForm" style="top: 20%; ">
+<div class="log-form" id="registrationForm" style="top: 20%; border: 5px solid #7b97ea; border-radius:5px;">
   <h2 style="font-weight:bold;  text-align:center; background-color: #7b97ea; color:white; ">Registration</h2>
   <form>
   <input type="text" id="userFnameInp" title="name" placeholder="Enter Name"  style="height:7%; border:1px solid grey;  border-radius:10px;"  required/>
-  <input type="email" title="email" id="userEmailInp" placeholder="Email" style="padding-left:1%; height:7%; border:1px solid grey;  border-radius:10px;" required />
+  <input type="email" title="email" id="userEmailInp" placeholder="Email" style="padding-left:1%; height:7%; border:1px solid grey;  border-radius:10px; padding-top:2%" required />
  <label style="font-weight:bold;">Type</label>
      <select  value="Type" id="userType" style=" height:7%; border:1px solid grey;  border-radius:10px;" required >
     </select>

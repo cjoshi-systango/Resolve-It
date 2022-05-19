@@ -38,7 +38,11 @@
     color: white;
   }
   #filter{
-      all: initial;
+    max-width: 10%;
+    max-height: 7%;
+    background-color: white;
+    padding: 0%;
+    margin-left: 1%;
   }
   #tableBody:hover {
     cursor: pointer;
@@ -83,22 +87,28 @@
     border: none;
     background-color: lightseagreen;
     color: white;
-    border-radius: 50%;
-    /* width: 20%;
-    height: 20%; */
+    border-radius: 100%;
+    font-size: smaller;
+    padding: 5%;
+    /* padding-right: 5%; */
+    /* padding-left: 5%; */
+    width: 20%;
+    /* height: 20%; */
   }
-  .assignedToButton
-  {
-    border: none;
-    background-color: lightseagreen;
-    color: white;
-    border-radius: 50%;
-    /* width: 20%;
-    height: 20%; */
-  }
-  
+.assignedToButton
+{
+  border: none;
+  background-color: lightseagreen;
+  color: white;
+  border-radius: 100%;
+  font-size: smaller;
+  width: 20%;
+  padding: 5%;
+  /* height: 90%; */
+}
+/*   
   #customers thead tr:first-child th:last-child{ border-top-right-radius: 10px; }
-  #customers thead tr:first-child th:first-child{ border-top-left-radius: 10px; }
+  #customers thead tr:first-child th:first-child{ border-top-left-radius: 10px; } */
   
   .subject
   {

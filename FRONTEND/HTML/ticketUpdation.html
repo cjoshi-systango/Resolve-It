@@ -26,8 +26,9 @@
     max-width:70vw;
     margin:auto;
     margin-top:5%;
-    background-color:#e8f0f3;
-    
+    background-color:#d7def5;
+    border: 5px solid #7b97ea; 
+    border-radius:5px; 
   
    
 }
@@ -37,9 +38,9 @@
 
 }
 .demo{
-    height: 20px;
-    flex: 0 0 200px;
-    margin-left: 10px;
+    /* height: 20px; */
+    /* flex: 0 0 200px; */
+    margin-left: 2%;
 }
     </style>
     <link rel="stylesheet" href="../CSS/ticketUpdation.css">
@@ -48,8 +49,6 @@
     <div class="log-form" id="ticketUpdate">
         <header><h2>Ticket Update</h2></header>
         <div class="container">
-            <span class="anchor" id="formChangePassword"></span>
-            <hr class="mb-5">
         <div id="issueData">
             <label>Subject :</label><span id="subject" class="demo"></span><br>
             <label>Priority :</label><span id="priority" class="demo"></span><br>
@@ -62,13 +61,13 @@
         <small id="ticketUpdationWarning" style="color:red; font-weight:600; display:none"> warning text here <!--Dynamic content here--> </small>
 
         <div id="outerdiv">
-            <button class="update hide">Update</button>
-            <button class="delete hide">Delete</button>
+            <button class="update hide" style="margin-top: 2%;">Update</button>
+            <button class="delete hide" style="margin-left: 5%;">Delete</button>
     
-            <span id="comments" style="color: blue;">Add Comments</span>
-            <span id="viewComments" style="color: blue;">View Comments</span>
-            <span id="viewImage" class="hide" style="color: blue;">View Image</span>
-            <span id="history" style="color: blue;">History</span>
+            <span id="comments" style="color: blue;margin-left: 5%;">Add Comments</span>
+            <span id="viewComments" style="color: blue; margin-left: 5%;">View Comments</span>
+            <span id="viewImage" class="hide" style="color: blue;margin-left: 5%;">View Image</span>
+            <span id="history" style="color: blue;margin-left: 5%;">History</span>
             <div id="outerdivsource">
     
             </div>

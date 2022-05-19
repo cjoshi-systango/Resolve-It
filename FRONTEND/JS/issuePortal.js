@@ -6,21 +6,21 @@ id="bootstrap-css"
 />
 
 
-<label style="color:black; font-weight: bold; ">Department</label>
+<label style="color:black; font-weight: bold; ">Department :</label>
 <select id="departmentSelect"  >
 <option>Select--</option>
 </select>
 
 <div id="registration_formmm" class="hide" style="position: relative;"> 
-    <div class="log-form" id="issuePortalForm" style="position: absolute; top: 50%; right: 50%; transform: translate(-50%,0%);">
+    <div class="log-form" id="issuePortalForm" style="position: absolute; top: 50%; right: 50%; transform: translate(-50%,0%);border: 5px solid #7b97ea; border-radius:5px;">
         <h2 style="font-weight:bold;  text-align:center; background-color: #7b97ea; color:white; ">New Issue</h2>
 
             
                 <div class="row">
                         
                     <div class="col">
-                        <label  style="color:black; font-weight: bold; ">Subject</label>
-                        <input type="text" id="subjectInp" placeholder="Subject" style="border:1px solid grey; border-radius:10px;">
+                        <label  style="color:black; font-weight: bold; margin-left:3%;margin-top:1%">Subject</label>
+                        <input type="text" id="subjectInp" placeholder="Subject" style="border:1px solid grey; border-radius:10px;margin-left:3%;width:90%">
                     </div>
                 </div>
             
@@ -28,8 +28,8 @@ id="bootstrap-css"
                 <div class="row>
                     <div class="col">
                         
-                        <label  style="color:black; font-weight: bold; " for="inputAddress">Discription</label>
-                        <textarea class="form-control" id="descriptionInp" rows="4"  style="border:1px solid grey;  border-radius:10px;"></textarea>
+                        <label  style="color:black; font-weight: bold; margin-left:3%;" for="inputAddress">Discription</label>
+                        <textarea class="form-control" id="descriptionInp" rows="4"  style="border:1px solid grey;  border-radius:10px;margin-left:3%;width:90%""></textarea>
                         
                     </div>
                 
@@ -37,24 +37,24 @@ id="bootstrap-css"
             
                 <div class="row">
                     <div class="col">
-                        <label style="color:black; font-weight: bold; ">Priority</label>
-                        <select id="PriorityInp"  style="border:1px solid grey; border-radius:10px;">
+                        <label style="color:black; font-weight: bold; margin-left:3%;">Priority</label>
+                        <select id="PriorityInp"  style="border:1px solid grey; border-radius:10px;margin-left:3%;width:90%">
                         <option>Select--</option>
                         </select>
             
                     </div> 
                         <div class="col">
-                            <label style="color:black; font-weight: bold; ">Status</label>
-                            <select id="statusInp"  style="border:1px solid grey; border-radius:10px;">
+                            <label style="color:black; font-weight: bold; margin-left:3%;">Status</label>
+                            <select id="statusInp"  style="border:1px solid grey; border-radius:10px;margin-left:3%;width:90%">
                                 <option>Select--</option>
                             </select>
                         </div>
                 </div>
                 <div class="row">
     
-                    <label  style="color:black; font-weight: bold; margin-left:2% ">Select File</label>
-                    <input type="file" class="form-control" id="selectfileInp" style="border:1px solid grey;  border-radius:10px; max-width:60%; height:2%; margin-left:1%;">
-                    <button id="UploadImage" style="display:inline; width:fit-content; background-color:#7b97ea; color:white;  max-width:15%; height:2%; margin-top:1.5%; margin-right:10%">Upload</button>
+                    <label  style="color:black; font-weight: bold; margin-left:3%; margin-top:2%">Select File</label>
+                    <input type="file" class="form-control" id="selectfileInp" style="border:1px solid grey;  border-radius:10px; width:60%; height:2%; margin-left:1%;">
+                    <button id="UploadImage" style="display:inline; width:fit-content; background-color:#7b97ea; color:white;  width:15%; height:2%; margin-top:1.5%; margin-right:5%">Upload</button>
                 </div> 
                 
             
@@ -62,15 +62,16 @@ id="bootstrap-css"
                         
                 
                         <div class="col">
-                            <label  style="color:black; font-weight: bold; ">Assign-To</label>
-                            <select id="AssigneeInp"  style="border:1px solid grey; border-radius:10px;">
+                            <label  style="color:black; font-weight: bold; margin-left:3%;">Assign-To</label>
+                            <select id="AssigneeInp"  style="border:1px solid grey; border-radius:10px;margin-left:3%;width:90%">
                             <option>Select--</option>
                             </select>
                         </div>
 
                 </div>
                 <small id="issuePortalWarning" style="color:red; font-weight:600; display:none"> warning text here <!--Dynamic content here--> </small>
-                
+
+
                 <button id="createIssueBtn" class="btn" style="background-color: #7b97ea; color:white; text-align:center; margin-left:40%">Submit</button>
         
             
