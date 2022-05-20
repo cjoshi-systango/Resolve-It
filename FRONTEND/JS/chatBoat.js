@@ -1,26 +1,49 @@
-//fetch url to run on port
-// let fetchUrl = "http://localhost:4000/";
-// let fetchUrl 
+let chatBot = `
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="../CSS/chatBoat.css">
 
-// import * as fetchurl from './config.js'
-// setTimeout(() => {
-//     console.log(Object.values(fetchurl) );
-//     fetchUrl = Object.values(fetchurl)
-//     //calling the function to check if user have raise any ticket 
-//     //and if user has raise the tickect then prepare the first question if not then prepare the first question 
-// }, 1000);
-// console.log(fetchurl);
+<input type="checkbox" id="check">
+<label class="chat-btn" for="check">
+<i class="fa fa-commenting-o comment"></i>
+<i class="fa fa-close close"></i> </label>
+<div class="wrapper">
+<div class="header">
+    <h6>Resolve-It</h6>
+</div>
+<div class="text-center p-2">
+    <!-- <span>Please fill out the form to start chat!</span> -->
+</div>
+<div class="chat-form">
+    <div class="col-12 d-flex flex-column p-2" id="chatShowArea">
+        <div id="systemResponse">
+        </div>
+    </div>
+</div>
+
+
+
+`
+
+
+let chatboatt = document.querySelector("#chatboat");
+chatboatt.innerHTML = chatBot;
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+
+
+//fetch url to run on port
 import {fetchUrl} from "../JS/config.js";
 
 
 
 //getting the essential element from html
-let optionDiv = document.querySelector("#option")
-let aurthorizationToken = localStorage.getItem("Aurthorization")
-let userResponse = document.querySelector("#userResponse");
-let questionDiv = document.querySelector("#question");
+let aurthorizationTokenn = localStorage.getItem("Aurthorization");
 let chatShowArea = document.querySelector("#chatShowArea");
-let optionDivv
+let optionDiv
 
 
 checkUserIssue();
@@ -30,7 +53,7 @@ function checkUserIssue()
 {
     //checking for user id from which user is logged In
     let userData={
-        id : aurthorizationToken,
+        id : aurthorizationTokenn,
     }
 
     //getting response for the url
@@ -39,7 +62,7 @@ function checkUserIssue()
             body: JSON.stringify(userData),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Aurthorization": aurthorizationToken,
+                "Aurthorization": aurthorizationTokenn,
 
             }
         }).then(async (result) => {
@@ -73,7 +96,7 @@ function firstQuestionForIssue()
         method: "GET",
         headers: {
             "Content-type": "application/json; charset=UTF-8",
-            "Aurthorization": aurthorizationToken,
+            "Aurthorization": aurthorizationTokenn,
         }
     }).then(async (result) => {
         let response = await result.json();
@@ -97,13 +120,13 @@ function firstQuestionForIssue()
         //     span.setAttribute("id",)
         // }
         data[1].forEach(element => {
-            optionDivv = document.createElement("div");
+            optionDiv = document.createElement("div");
             let span = document.createElement("p");
             span.setAttribute("class", "spans");
             span.setAttribute("id", element.id);
             span.innerHTML = element.option;
             // span.onclick("click",nextQuestion(3))
-            optionDivv.appendChild(span);
+            optionDiv.appendChild(span);
             span.onclick = () => {
 
                 let reponseDiv = document.createElement("div");
@@ -112,10 +135,10 @@ function firstQuestionForIssue()
                 responseByUser.innerHTML = span.innerHTML;
                 reponseDiv.appendChild(responseByUser);
                 chatShowArea.appendChild(reponseDiv);
-                optionDivv.remove();
+                optionDiv.remove();
                 nextQuestion(element.id,10)
             };
-            systemResponse.appendChild(optionDivv)
+            systemResponse.appendChild(optionDiv)
 
             chatShowArea.appendChild(systemResponse);
             console.log(element);
@@ -136,7 +159,7 @@ function firstQuestion() {
         method: "GET",
         headers: {
             "Content-type": "application/json; charset=UTF-8",
-            "Aurthorization": aurthorizationToken,
+            "Aurthorization": aurthorizationTokenn,
         }
     }).then(async (result) => {
         let response = await result.json();
@@ -160,13 +183,13 @@ function firstQuestion() {
         //     span.setAttribute("id",)
         // }
         data[1].forEach(element => {
-            optionDivv = document.createElement("div");
+            optionDiv = document.createElement("div");
             let span = document.createElement("p");
             span.setAttribute("class", "spans");
             span.setAttribute("id", element.id);
             span.innerHTML = element.option;
             // span.onclick("click",nextQuestion(3))
-            optionDivv.appendChild(span);
+            optionDiv.appendChild(span);
             span.onclick = () => {
 
                 let reponseDiv = document.createElement("div");
@@ -175,10 +198,10 @@ function firstQuestion() {
                 responseByUser.innerHTML = span.innerHTML;
                 reponseDiv.appendChild(responseByUser);
                 chatShowArea.appendChild(reponseDiv);
-                optionDivv.remove();
+                optionDiv.remove();
                 nextQuestion(element.id,1);
             };
-            systemResponse.appendChild(optionDivv)
+            systemResponse.appendChild(optionDiv)
 
             chatShowArea.appendChild(systemResponse);
             console.log(element);
@@ -208,7 +231,7 @@ function nextQuestion(idd,qId) {
         
         optionId: idd,
         qId : qId,
-        user: aurthorizationToken,
+        user: aurthorizationTokenn,
         dateTime:dateTime,
     }
     //this will get next question and option and will also store history
@@ -217,7 +240,7 @@ function nextQuestion(idd,qId) {
         body: JSON.stringify(nextQuestionObject),
         headers: {
             "Content-type": "application/json; charset=UTF-8",
-            "Aurthorization": aurthorizationToken,
+            "Aurthorization": aurthorizationTokenn,
         }
     }).then(async (result) => {
         let response = await result.json();
@@ -238,7 +261,7 @@ function nextQuestion(idd,qId) {
             });
 
             data[1].forEach(element => {
-                optionDivv = document.createElement("div")
+                optionDiv = document.createElement("div")
                 let span = document.createElement("p");
                 span.setAttribute("class", "spans");
                 span.setAttribute("id", element.id);
@@ -253,7 +276,7 @@ function nextQuestion(idd,qId) {
                     responseByUser.innerHTML = span.innerHTML;
                     reponseDiv.appendChild(responseByUser);
                     chatShowArea.appendChild(reponseDiv);
-                    optionDivv.remove();
+                    optionDiv.remove();
                     // while (chatShowArea.firstChild) {
                     //     chatShowArea.removeChild(chatShowArea.firstChild);
                     // }
@@ -262,8 +285,8 @@ function nextQuestion(idd,qId) {
 
                 };
 
-                optionDivv.appendChild(span);
-                systemResponse.appendChild(optionDivv)
+                optionDiv.appendChild(span);
+                systemResponse.appendChild(optionDiv)
                 chatShowArea.appendChild(systemResponse);
                 console.log(element);
             });

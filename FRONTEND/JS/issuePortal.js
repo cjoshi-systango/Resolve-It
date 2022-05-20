@@ -6,7 +6,7 @@ id="bootstrap-css"
 />
 
 
-<label style="color:black; font-weight: bold; ">Department :</label>
+<label style="color:black; font-weight: bold; margin-left: 2%">Department :</label>
 <select id="departmentSelect"  >
 <option>Select--</option>
 </select>
