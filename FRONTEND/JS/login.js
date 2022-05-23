@@ -61,7 +61,8 @@ function logIn(e)
                 localStorage.setItem("Aurthorization",data.token);
                 loginNameWarning.innerHTML = "Welcome!!";
                 loginNameWarning.style.display = "block";
-
+               
+               
                 location.href = "HTML/index.html"
             }
             else if(data == "noUserFound")
