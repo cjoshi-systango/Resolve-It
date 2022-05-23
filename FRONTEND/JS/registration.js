@@ -19,7 +19,7 @@ id="bootstrap-css"
 </select>
 <small id="registrationWarning" style="color:red; font-weight:600; display:none"> warning text here <!--Dynamic content here--> </small>
   
-    <button id = "registrationBtn" class="btn" style="background-color: #7b97ea; color:white;  text-align:center; margin-left:43%">Register</button>
+    <button id = "registrationBtn" class="btn" style="background-color: #7b97ea; color:white;  text-align:center; margin-left:43%; margin-top:2%">Register</button>
 
 </div>
    

@@ -125,6 +125,16 @@ function firstQuestionForIssue()
             span.setAttribute("class", "spans");
             span.setAttribute("id", element.id);
             span.innerHTML = element.option;
+            span.style.paddingTop = "0";
+            span.style.paddingBottom = "0";
+            span.style.paddingLeft = "10%";
+            span.style.paddingRight = "20%";
+
+            span.style.border = "2px solid #7b97ea";
+            span.style.borderRadius = "10px";
+            span.style.maxWidth = ((element.option.length + 7) * 8) + 'px';
+            span.style.maxHeight = "20%";
+            
             // span.onclick("click",nextQuestion(3))
             optionDiv.appendChild(span);
             span.onclick = () => {
@@ -188,6 +198,16 @@ function firstQuestion() {
             span.setAttribute("class", "spans");
             span.setAttribute("id", element.id);
             span.innerHTML = element.option;
+            span.style.paddingTop = "0";
+            span.style.paddingBottom = "0";
+            span.style.paddingLeft = "10%";
+            span.style.paddingRight = "20%";
+
+
+            span.style.border = "2px solid #7b97ea";
+            span.style.borderRadius = "10px";
+            span.style.maxWidth = ((element.option.length + 7) * 8) + 'px';
+            span.style.maxHeight = "20%";
             // span.onclick("click",nextQuestion(3))
             optionDiv.appendChild(span);
             span.onclick = () => {
@@ -266,6 +286,15 @@ function nextQuestion(idd,qId) {
                 span.setAttribute("class", "spans");
                 span.setAttribute("id", element.id);
                 span.innerHTML = element.options;
+                span.style.paddingTop = "0";
+                span.style.paddingBottom = "0";
+                span.style.paddingLeft = "10%";
+                span.style.paddingRight = "20%";
+
+                span.style.border = "2px solid #7b97ea";
+                span.style.borderRadius = "10px";
+                span.style.maxWidth = ((element.options.length + 7) * 8) + 'px';
+                span.style.maxHeight = "20%";
                 
                 // span.onclick("click",nextQuestion(3))
                 span.onclick = () => {
