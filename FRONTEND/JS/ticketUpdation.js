@@ -301,6 +301,8 @@ function getIssueDataForAdmin(userDepartmentId) {
 
                 function viewImagee() {
                     let image = document.createElement("img");
+                    image.style.maxWidth = "30%";
+                    image.style.maxHeight = "50%";
                     data[0].forEach(element => {
                         if (element.imageUrl == null) image.alt = "no image found";
                         else image.src = element.imageUrl;
