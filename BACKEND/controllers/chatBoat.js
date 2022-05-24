@@ -43,12 +43,12 @@ function nextQuestion(req, res, optionId, qId, user,dateTime) {
             result.forEach(element => {
                 if (element.dyanamic_option == 0) {
                     notDyanamicOption();
-                    // storeHistory(optionId,qId,user,dateTime);
+                    storeHistory(optionId,qId,user,dateTime);
                 }
                 else {
                     console.log("dyanamic_option");
                     dyanamicOption();
-                    // storeHistoryForDynamic(optionId,qId,user,dateTime);
+                    storeHistoryForDynamic(optionId,qId,user,dateTime);
                 }
             })
         }
