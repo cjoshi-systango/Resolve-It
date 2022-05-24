@@ -1,6 +1,6 @@
 const connection = require("../database/database_connection");
 const bcrypt = require('bcrypt');
-// const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 
 function storeUserData(Name,Email,Usertype,Password,Department,req,res)
 {
