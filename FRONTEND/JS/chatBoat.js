@@ -23,6 +23,11 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
 
 
 `
@@ -43,8 +48,9 @@ import {fetchUrl} from "../JS/config.js";
 //getting the essential element from html
 let aurthorizationTokenn = localStorage.getItem("Aurthorization");
 let chatShowArea = document.querySelector("#chatShowArea");
-let optionDiv
+let wrapper = document.querySelector(".wrapper");
 
+let optionDiv
 
 checkUserIssue();
 
@@ -109,8 +115,8 @@ function firstQuestionForIssue()
             let question = document.createElement("p");
             question.innerHTML = element.question;
             div.appendChild(question);
-            systemResponse.appendChild(div);
-            chatShowArea.appendChild(systemResponse);
+            
+            chatShowArea.appendChild(div);
             console.log(element);
         });
 
@@ -133,7 +139,7 @@ function firstQuestionForIssue()
             span.style.border = "2px solid #7b97ea";
             span.style.borderRadius = "10px";
             span.style.maxWidth = ((element.option.length + 7) * 8) + 'px';
-            span.style.maxHeight = "20%";
+            span.style.minHeight = "20%";
             
             // span.onclick("click",nextQuestion(3))
             optionDiv.appendChild(span);
@@ -145,7 +151,7 @@ function firstQuestionForIssue()
                 responseByUser.innerHTML = span.innerHTML;
                 reponseDiv.appendChild(responseByUser);
                 chatShowArea.appendChild(reponseDiv);
-                optionDiv.remove();
+                systemResponse.remove();
                 nextQuestion(element.id,10)
             };
             systemResponse.appendChild(optionDiv)
@@ -182,8 +188,7 @@ function firstQuestion() {
             let question = document.createElement("p");
             question.innerHTML = element.question;
             div.appendChild(question);
-            systemResponse.appendChild(div);
-            chatShowArea.appendChild(systemResponse);
+            chatShowArea.appendChild(div);
             console.log(element);
         });
 
@@ -207,7 +212,7 @@ function firstQuestion() {
             span.style.border = "2px solid #7b97ea";
             span.style.borderRadius = "10px";
             span.style.maxWidth = ((element.option.length + 7) * 8) + 'px';
-            span.style.maxHeight = "20%";
+            span.style.minHeight = "20%";
             // span.onclick("click",nextQuestion(3))
             optionDiv.appendChild(span);
             span.onclick = () => {
@@ -218,7 +223,7 @@ function firstQuestion() {
                 responseByUser.innerHTML = span.innerHTML;
                 reponseDiv.appendChild(responseByUser);
                 chatShowArea.appendChild(reponseDiv);
-                optionDiv.remove();
+                systemResponse.remove();
                 nextQuestion(element.id,1);
             };
             systemResponse.appendChild(optionDiv)
@@ -243,7 +248,7 @@ function nextQuestion(idd,qId) {
     // console.log(spans[1].id);
     // chatShowArea.innerHTML = "";
     let systemResponse = document.createElement("div");
-
+    window.scrollTo(0,wrapper.scrollHeight);
 
     console.log(idd);
     console.log(qId);
@@ -275,8 +280,7 @@ function nextQuestion(idd,qId) {
                 question.innerHTML = element.nextQuestion;
                 question_id = element.id;
                 div.appendChild(question);
-                systemResponse.appendChild(div);
-                chatShowArea.appendChild(systemResponse);
+                chatShowArea.appendChild(div);
                 console.log(element);
             });
 
@@ -294,7 +298,7 @@ function nextQuestion(idd,qId) {
                 span.style.border = "2px solid #7b97ea";
                 span.style.borderRadius = "10px";
                 span.style.maxWidth = ((element.options.length + 7) * 8) + 'px';
-                span.style.maxHeight = "20%";
+                span.style.minHeight = "20%";
                 
                 // span.onclick("click",nextQuestion(3))
                 span.onclick = () => {
@@ -305,7 +309,7 @@ function nextQuestion(idd,qId) {
                     responseByUser.innerHTML = span.innerHTML;
                     reponseDiv.appendChild(responseByUser);
                     chatShowArea.appendChild(reponseDiv);
-                    optionDiv.remove();
+                    systemResponse.remove();
                     // while (chatShowArea.firstChild) {
                     //     chatShowArea.removeChild(chatShowArea.firstChild);
                     // }

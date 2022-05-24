@@ -146,8 +146,6 @@ function getNameOfFile(file) {
 let url;
 //function to upload the image in firebase
 async function imageUpload() {
-    console.log("tttttttttttttt");
-    alert('data')
     console.log(files[0]);
     let imgToUpload = files[0];
 
@@ -403,7 +401,6 @@ function storeTicketData() {
             ImageUrl : url,
 
         }
-        console.log(data);
         //this will store the data in database
         fetch(fetchUrl+"issuePortal/createIssue", {
             method: "POST",
@@ -417,7 +414,6 @@ function storeTicketData() {
             let response = await result.json();
             let data = response.data;
             if (data == "issueCreated") {
-                alert("issueCreated");
                 swal({
                     title: "Good job!",
                     text: "Issue Created Sucessfully!",
