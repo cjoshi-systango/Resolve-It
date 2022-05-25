@@ -140,6 +140,11 @@
 
 <body onload="loader()" style="margin:0%" class="animate-bottom">
   <script>
+    let check = localStorage.getItem("Aurthorization")
+    if(check == "")
+    {
+      location.href = "../../";
+    } 
 
     function loader() {
       setTimeout(showPage, 3000)
@@ -157,7 +162,7 @@
 
 
     function active(event) {
-      debugger;
+  
       var name = event.target.attributes.name.value;
 
       switch (name) {
@@ -333,7 +338,7 @@
       let logoutbtn = document.querySelector("#logoutbtn");
 
       logoutbtn.addEventListener("click", () => {
-        localStorage.clear();
+        localStorage.setItem("Aurthorization","");
         location.href = "../../";
       })
 
