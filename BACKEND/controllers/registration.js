@@ -1,6 +1,8 @@
 const connection = require("../database/database_connection");
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
+require('dotenv').config()
+
 
 function storeUserData(Name,Email,Usertype,Password,Department,req,res)
 {
@@ -47,13 +49,13 @@ function storeUserData(Name,Email,Usertype,Password,Department,req,res)
                                             let transporter = nodemailer.createTransport({
                                                 service: 'gmail',
                                                 auth: {
-                                                  user: "resolveItt@gmail.com",
-                                                  pass: "resolveIt@13",
+                                                  user: process.env.EMAIL_ID,
+                                                  pass: process.env.EMAIL_PASS,
                                                 }
                                               });
                                               
                                                 let mailOptions = {
-                                                from: 'resolveItt@gmail.com',
+                                                from: process.env.EMAIL_ID,
                                                 to: Email,
                                                 subject: "User Credentials",
                                                 text: "Here are your credentials of resolveIt" + Password,
