@@ -149,8 +149,8 @@ async function updateIssueStatus(req, res, id, status) {
     })
 }
 
-async function deleteIssue(req, res, id) {
-    let queryToDelete = `DELETE FROM issue WHERE id = "${id}";`
+function deleteIssue(req, res, id) {
+    let queryToDelete = `SET FOREIGN_KEY_CHECKS=0;DELETE FROM issue WHERE id = "${id}";SET FOREIGN_KEY_CHECKS=1;`
 
     connection.query(queryToDelete, (err, result) => {
         if (err) {
