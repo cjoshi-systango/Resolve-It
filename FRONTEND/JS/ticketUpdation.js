@@ -198,6 +198,7 @@ function seeHistory() {
     }).then(async (result) => {
         let response = await result.json();
         let data = response.data;
+        outerdivsource.innerHTML = "";
         if (data == null) {
             let historyData = document.createElement("p");
             historyData.innerHTML = "No Update History";
@@ -205,7 +206,7 @@ function seeHistory() {
         }
         else {
             console.log("done");
-            outerdivsource.innerHTML = "";
+            
 
             console.log(data);
             
@@ -214,7 +215,7 @@ function seeHistory() {
                 
                 updation_msg = document.createElement("h6");
                 
-                updation_msg.innerHTML = `Updated by ${element.update_by} ${element.update_time}`;
+                updation_msg.innerHTML = `Updated by ${element.update_by} from ${element.update_from} to ${element.update_to} ${element.update_time}`;
                
                
                 outerdivsource.appendChild(updation_msg);
@@ -235,7 +236,7 @@ function getIssueDataForAdmin(userDepartmentId) {
     let label = document.createElement("label");
     let status = document.createElement("select");
     status.style.marginLeft = "2%";
-    let oldStatus;
+    let oldStatus,oldStatus_title;
 
     // console.log(element.update);
     let data = {
@@ -281,7 +282,7 @@ function getIssueDataForAdmin(userDepartmentId) {
                     description.innerHTML = element.description;
                     createdBy.innerHTML = element.created_by;
                     oldStatus = element.status
-
+                    oldStatus_title = element.status_title;
 
                 });
                 label.innerHTML = "Status :";
@@ -290,7 +291,12 @@ function getIssueDataForAdmin(userDepartmentId) {
                     let statusOption = document.createElement("option");
                     statusOption.innerHTML = element.title;
                     statusOption.setAttribute("value", element.id);
-                    status.appendChild(statusOption);
+                    if(element.title == oldStatus_title) 
+                    {
+                        status.value = element.title;
+                        status.prepend(statusOption);
+                    }
+                    else status.appendChild(statusOption);
                     label.appendChild(status);
                     issueData.appendChild(label);
 
@@ -298,13 +304,18 @@ function getIssueDataForAdmin(userDepartmentId) {
                 viewImage.addEventListener("click", viewImagee)
                 updateBtn.addEventListener("click", updateIssueStatus)
                 deleteBtn.addEventListener("click", deleteIssue)
-
+                let imageNotFound = document.createElement("p");
+                let image = document.createElement("img");
                 function viewImagee() {
-                    let image = document.createElement("img");
+                    outerdivsource.innerHTML = "";
                     image.style.maxWidth = "30%";
                     image.style.maxHeight = "50%";
                     data[0].forEach(element => {
-                        if (element.imageUrl == null) image.alt = "no image found";
+                        if (element.imageUrl == null) 
+                        {
+                            imageNotFound.innerHTML = "no image found";
+                            outerdivsource.appendChild(imageNotFound);
+                        }
                         else image.src = element.imageUrl;
                     })
                     outerdivsource.appendChild(image);
