@@ -3,35 +3,78 @@ const jwt = require('jsonwebtoken');
 const e = require("cors");
 require('dotenv').config()
 
-async function fetchdepartmentDetails(req, res) {
-    let departmentObject = [];
-    console.log("inside function ---------------------");
-    let queryToGetAllDepartment = `SELECT id,name FROM department`
+async function fetchdepartmentDetails(req, res, id) {
 
-    connection.query(queryToGetAllDepartment, (err, result) => {
-        if (err) {
-            console.log(err);
-            res.status(400).json({ success: false, error: err });
+    console.log("inside issuePortal");
+    console.log(id);
+    let decoded = jwt.verify(id, process.env.TOKEN_KEY);
+
+    let queryToGetUserDepartment = `SELECT id FROM user_info WHERE email = "${decoded.user}";`
+
+    connection.query(queryToGetUserDepartment, (err, result) => {
+        if (result.length > 0) {
+            result.forEach(element => {
+                getDepartmentId(element.id);
+            })
         }
         else {
-
-            console.log(result.length + "bxshb");
-            result.forEach(element => {
-                let key, value;
-
-                key = element.name;
-                // console.log(key + "hjgkui");
-                value = element.id
-                departmentObject.push({
-                    [key]: value,
-                })
-
-            })
-
+            res.status(400).json({ success: false, error: err });
         }
-        console.log(departmentObject);
-        res.status(200).json({ success: true, data: departmentObject });
     })
+
+    function getDepartmentId(id) {
+
+        let queryToGetDepartmentId = `SELECT department_id FROM user_department_role WHERE user_id = ${id} LIMIT ${10};`
+        connection.query(queryToGetDepartmentId, (err, result) => {
+            if (result.length > 0) {
+                console.log(result);
+                // result.forEach(element => {
+                getDepartment(result);
+                // })
+            }
+            else {
+                res.status(400).json({ success: false, error: err });
+            }
+        })
+
+    }
+    let departmentObject = [];
+    function getDepartment(departmentIdResult) {
+        departmentIdResult.forEach(element => {
+            let queryToGetAllDepartment = `SELECT * FROM department WHERE id = ${element.department_id};`
+
+            connection.query(queryToGetAllDepartment, (err, result) => {
+                if (err) {
+                    console.log(err);
+                    res.status(400).json({ success: false, error: err });
+                }
+                else if (result.length > 0) {
+
+                    console.log(result.length + "bxshb");
+                    result.forEach(element => {
+                        let key, value;
+        
+                        key = element.name;
+                        // console.log(key + "hjgkui");
+                        value = element.id
+                        departmentObject.push({
+                            [key]: value,
+                        })
+        
+                    })
+
+                }
+                console.log(departmentObject);
+                if(departmentIdResult.length == departmentObject.length)
+                {
+                    res.status(200).json({ success: true, data: departmentObject });
+
+                }
+            })
+        })
+
+    }
+
 
 }
 
@@ -189,7 +232,7 @@ async function fetchAssignee(Department, req, res) {
 
 }
 
-function storeIssueData(Subject, Decription, Department, Status, Priority, CreatedDate, AssignTo, CreatedBy,ImageUrl, req, res) {
+function storeIssueData(Subject, Decription, Department, Status, Priority, CreatedDate, AssignTo, CreatedBy, ImageUrl, req, res) {
     console.log(CreatedBy);
     let decoded = jwt.verify(CreatedBy, process.env.TOKEN_KEY)
     console.log(decoded.user);
