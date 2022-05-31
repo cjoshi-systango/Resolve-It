@@ -5,8 +5,9 @@ const auth = require("../middware/auth");
 
 console.log("juhhol");
 issuePortalrouter.post("/departmentDetails",auth,(req,res)=>{
-   
-    issuePortalController.fetchdepartmentDetails(req,res);
+    
+    let {id} = req.body
+    issuePortalController.fetchdepartmentDetails(req,res,id);
 });
 
 

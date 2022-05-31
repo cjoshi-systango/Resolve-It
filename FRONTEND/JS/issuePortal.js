@@ -204,9 +204,13 @@ uploadImage.addEventListener("click", imageUpload);
 //this will get the all department from database
 function getDepartment()
 {
+    let userData = {
+        id : aurthorizationToken,
+    }
+
     fetch(fetchUrl+"issuePortal/departmentDetails", {
         method: "POST",
-        // body: "",
+        body: JSON.stringify(userData),
         headers: {
             "Content-type": "application/json; charset=UTF-8",
             "Aurthorization": aurthorizationToken
