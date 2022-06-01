@@ -208,3 +208,9 @@
   padding: 0%;
   margin-left: 1%;
 }
+.swal-button{
+  background-color: #7b97ea;
+}
+.swal-button--cancel{
+  background-color: white;
+}
