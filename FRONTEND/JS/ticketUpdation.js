@@ -1,5 +1,5 @@
 //fetch url to run the port on
-import {fetchUrl} from "../JS/config.js";
+import { fetchUrl } from "../JS/config.js";
 
 //getting all the required element 
 let issueData = document.querySelector("#issueData");
@@ -39,25 +39,23 @@ let aurthorizationToken = localStorage.getItem("Aurthorization");
 comments.addEventListener("click", addcomment)
 viewComment.addEventListener("click", seeComment);
 history.addEventListener("click", seeHistory);
-ticketUpdate.addEventListener("click",removeWarning)
+ticketUpdate.addEventListener("click", removeWarning)
 
-function removeWarning()
-{
+function removeWarning() {
     setTimeout(() => {
         ticketUpdationWarning.style.display = "none";
-        
+
     }, 2000);
 }
 
 getUserType();
 
-function getUserType()
-{
+function getUserType() {
     let data = {
         user: aurthorizationToken
     }
     //this will get the user type of loged In user and will show the page according to its permissions
-    fetch(fetchUrl+"ticketUpdate/getUserType", {
+    fetch(fetchUrl + "ticketUpdate/getUserType", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -80,10 +78,10 @@ function getUserType()
                 //calling the function for admin
                 getIssueDataForAdmin(userDepartmentId);
             }
-    
+
         });
-    
-    
+
+
     })
         .catch((e) => {
             console.error(e);
@@ -114,7 +112,7 @@ function storeComment() {
         comment: comment,
         userId: aurthorizationToken,
     }
-    fetch(fetchUrl+"ticketUpdate/storeComment", {
+    fetch(fetchUrl + "ticketUpdate/storeComment", {
         method: "POST",
         body: JSON.stringify(commentData),
         headers: {
@@ -150,7 +148,7 @@ function seeComment() {
     let getCommentOfIssue = {
         issueId: issueId
     }
-    fetch(fetchUrl+"ticketUpdate/fetchComment", {
+    fetch(fetchUrl + "ticketUpdate/fetchComment", {
         method: "POST",
         body: JSON.stringify(getCommentOfIssue),
         headers: {
@@ -188,7 +186,7 @@ function seeHistory() {
     let getUpdateHistory = {
         issueId: issueId
     }
-    fetch(fetchUrl+"ticketUpdate/fetchUpdateHistory", {
+    fetch(fetchUrl + "ticketUpdate/fetchUpdateHistory", {
         method: "POST",
         body: JSON.stringify(getUpdateHistory),
         headers: {
@@ -206,24 +204,24 @@ function seeHistory() {
         }
         else {
             console.log("done");
-            
+
 
             console.log(data);
-            
+
             let updation_msg;
             data.forEach(element => {
-                
+
                 updation_msg = document.createElement("h6");
-                
+
                 updation_msg.innerHTML = `Updated by ${element.update_by} from ${element.update_from} to ${element.update_to} ${element.update_time}`;
-               
-               
+
+
                 outerdivsource.appendChild(updation_msg);
 
-               
-                
+
+
             })
-           
+
         }
     })
         .catch((e) => {
@@ -236,13 +234,13 @@ function getIssueDataForAdmin(userDepartmentId) {
     let label = document.createElement("label");
     let status = document.createElement("select");
     status.style.marginLeft = "2%";
-    let oldStatus,oldStatus_title;
+    let oldStatus, oldStatus_title;
 
     // console.log(element.update);
     let data = {
         id: issueId
     }
-    fetch(fetchUrl+"ticketUpdate/getIssueDataForAdmin", {
+    fetch(fetchUrl + "ticketUpdate/getIssueDataForAdmin", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -291,8 +289,7 @@ function getIssueDataForAdmin(userDepartmentId) {
                     let statusOption = document.createElement("option");
                     statusOption.innerHTML = element.title;
                     statusOption.setAttribute("value", element.id);
-                    if(element.title == oldStatus_title) 
-                    {
+                    if (element.title == oldStatus_title) {
                         status.value = element.title;
                         status.prepend(statusOption);
                     }
@@ -311,8 +308,7 @@ function getIssueDataForAdmin(userDepartmentId) {
                     image.style.maxWidth = "30%";
                     image.style.maxHeight = "50%";
                     data[0].forEach(element => {
-                        if (element.imageUrl == null) 
-                        {
+                        if (element.imageUrl == null) {
                             imageNotFound.innerHTML = "no image found";
                             outerdivsource.appendChild(imageNotFound);
                         }
@@ -327,7 +323,7 @@ function getIssueDataForAdmin(userDepartmentId) {
                         id: issueId,
                         status: status.value,
                     }
-                    fetch(fetchUrl+"ticketUpdate/updateIssueStatus", {
+                    fetch(fetchUrl + "ticketUpdate/updateIssueStatus", {
                         method: "POST",
                         body: JSON.stringify(updateData),
                         headers: {
@@ -337,8 +333,7 @@ function getIssueDataForAdmin(userDepartmentId) {
                     }).then(async (result) => {
                         let response = await result.json();
                         let data = response.data;
-                        if (data == "update") 
-                        {
+                        if (data == "update") {
                             ticketUpdationWarning.innerHTML = "Updated Succesfully";
                             ticketUpdationWarning.style.display = "block";
                         }
@@ -351,7 +346,7 @@ function getIssueDataForAdmin(userDepartmentId) {
                             updateTo: status.value
                         }
 
-                        fetch(fetchUrl+"ticketUpdate/storeUpdateHistory", {
+                        fetch(fetchUrl + "ticketUpdate/storeUpdateHistory", {
                             method: "POST",
                             body: JSON.stringify(updateHistory),
                             headers: {
@@ -374,28 +369,52 @@ function getIssueDataForAdmin(userDepartmentId) {
                         })
                 }
                 function deleteIssue() {
-                    let deleteIssue = {
-                        id: issueId
-                    }
-                    fetch(fetchUrl+"ticketUpdate/deleteIssue", {
-                        method: "POST",
-                        body: JSON.stringify(deleteIssue),
-                        headers: {
-                            "Content-type": "application/json; charset=UTF-8",
-                            "Aurthorization": aurthorizationToken,
-                        }
-                    }).then(async (result) => {
-                        let response = await result.json();
-                        let data = response.data;
 
-                        if (data == "deleted") {
-                            ticketUpdationWarning.innerHTML = "Deleted Sucessfully";
-                            ticketUpdationWarning.style.display = "block";
-                        }
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this issue ticket!",
+                        icon: "warning",
+                        buttons: {
+                            cancel: "cancel",
+                            ok: {
+                                text: "confirm",
+                            }
+                        },
+                        dangerMode: true,
                     })
-                        .catch((e) => {
-                            console.error(e);
-                        })
+                        .then((willDelete) => {
+                            if (willDelete) {
+                                let deleteIssue = {
+                                    id: issueId
+                                }
+                                fetch(fetchUrl + "ticketUpdate/deleteIssue", {
+                                    method: "POST",
+                                    body: JSON.stringify(deleteIssue),
+                                    headers: {
+                                        "Content-type": "application/json; charset=UTF-8",
+                                        "Aurthorization": aurthorizationToken,
+                                    }
+                                }).then(async (result) => {
+                                    let response = await result.json();
+                                    let data = response.data;
+
+                                    if (data == "deleted") {
+                                        swal("Poof! Your issue ticket has been deleted!", {
+                                            icon: "success",
+                                        }).then(()=>{
+                                            window.location.href = "./index.html";
+                                        })
+                                    }
+                                })
+                                    .catch((e) => {
+                                        console.error(e);
+                                    })
+
+                            } else {
+                                swal("Your issue ticket is safe!");
+                            }
+                        });
+
                 }
 
             }
@@ -416,7 +435,7 @@ function getIssueDataForUser() {
     let data = {
         id: issueId
     }
-    fetch(fetchUrl+"ticketUpdate/getIssueDataForUser", {
+    fetch(fetchUrl + "ticketUpdate/getIssueDataForUser", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -436,7 +455,7 @@ function getIssueDataForUser() {
             createdBy.innerHTML = element.created_by;
             label.innerHTML = "Status :";
             status.innerHTML = element.status_title
-            status.setAttribute("class","demo");
+            status.setAttribute("class", "demo");
             label.appendChild(status);
             issueData.appendChild(label);
 

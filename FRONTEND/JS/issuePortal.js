@@ -423,7 +423,9 @@ function storeTicketData() {
                     text: "Issue Created Sucessfully!",
                     icon: "success",
                     button: "Aww yiss!",
-                  });
+                  }).then(()=>{
+                    window.location.reload();
+                  })
             }
             else if (data == "error") {
                 issuePortalWarning.innerHTML = "Someting Went Wrong Please Try Again"; 
