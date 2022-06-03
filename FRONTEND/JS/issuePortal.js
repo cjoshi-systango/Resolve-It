@@ -355,7 +355,7 @@ function createIssuePortal() {
 
 //this will get the date on which the issue is cerated 
 let today = new Date();
-let currentdate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+let currentdate = today.getFullYear() + '-' + Multiplication(today.getMonth() + 1) + '-' + today.getDate();
 
 
 //function to store the ticket data in the database
