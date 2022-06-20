@@ -7,6 +7,17 @@ const server = http.createServer(app);
 const bodyParser = require("body-parser");
 const cors = require('cors');
 const fs = require('fs')
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJson = require('./swagger.json');
+
+// const swaggerOpsion = {
+//     definition:
+
+// }
+
+
+app.use("/api-docs",swaggerUi.serve,swaggerUi.setup(swaggerJson));
 
 // let obj = {
 //     table : []
@@ -57,6 +68,7 @@ const ticketUpdationRouter = require("./BACKEND/routes/ticketUpdation")
 const changePasswordRouter = require("./BACKEND/routes/changePassword"); 
 const chatBoatRouter = require("./BACKEND/routes/chatBoat")
 const createDepartment = require("./BACKEND/routes/createDepartment");
+// const swaggerJSDoc = require("swagger-jsdoc");
 
 app.use(cors());
 app.use("/login",loginRouter);
